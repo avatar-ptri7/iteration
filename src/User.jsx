@@ -31,7 +31,6 @@ function User (props) {
   //onDrop function. Update job item with new status in database
   const onDrop = (item, monitor, status) => {
     axios.post('/users/updatestatus', {
-              // TO-DO: need to add user_id to post request
               job_id: `${item.job_id}`,
               status: `${status}`
           }).then(response => console.log("axios post response", response))
