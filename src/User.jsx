@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import JobCard from './userComponents/JobCard.jsx';
-import Colunms from './userComponents/Columns.jsx';
+import Columns from './userComponents/Columns.jsx';
 import { statuses } from '../data/mock.js';
 import DropWrapper from './userComponents/DropWrapper.jsx';
 import axios from 'axios';
@@ -31,6 +31,7 @@ function User (props) {
   //onDrop function. Update job item with new status in database
   const onDrop = (item, monitor, status) => {
     axios.post('/users/updatestatus', {
+              // TO-DO: need to add user_id to post request
               job_id: `${item.job_id}`,
               status: `${status}`
           }).then(response => console.log("axios post response", response))
@@ -66,10 +67,10 @@ function User (props) {
               <div key={s.status} className={"col-wrapper"}>
                 <h2 className={'col-header'}>{s.status_name}</h2>
                   <DropWrapper onDrop={onDrop} status={s.status}>
-                    <Colunms>
+                    <Columns>
                       {jobs.filter(i => i.status === s.status)
                             .map((i, idx ) => <JobCard key={i.job_id} item={i} index={idx} moveItem={moveItem} status={s} />)}
-                    </Colunms>
+                    </Columns>
                   </DropWrapper>
               </div>
             )}

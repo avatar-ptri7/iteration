@@ -101,6 +101,7 @@ userController.getAllJobs = async (req, res, next) => {
     // get all the jobs that have that job_id
 
     const queryType =
+      // TO-DO: Need to add uj.status to SELECT statement
       "SELECT uj.user_id, j.* FROM users_jobs uj RIGHT OUTER JOIN jobs j ON uj.job_id=j.job_id WHERE uj.user_id=$1";
     // returns an array full of objects that are the jobs
     const params = [user_id];
@@ -148,6 +149,7 @@ userController.getJob = async (req, res, next) => {
 userController.updateStatus = async (req, res, next) => {
   try{
     
+    // TO-DO: Update query to set users_jobs to status where job_id AND user_id match
     const queryType = 'UPDATE jobs SET status=$1 WHERE job_id=$2';
     const { job_id, status } = req.body
     // const user_id = res.locals.verified_id;
