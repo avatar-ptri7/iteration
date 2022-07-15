@@ -106,7 +106,7 @@ userController.getAllJobs = async (req, res, next) => {
     const params = [user_id];
 
     const values = await db.query(queryType, params);
-    console.log("VALUES -> ", values)
+    //console.log("VALUES -> ", values)
     res.locals.values = values.rows;
     return next();
   } catch (err) {
@@ -147,7 +147,7 @@ userController.getJob = async (req, res, next) => {
 
 userController.updateStatus = async (req, res, next) => {
   try{
-    
+
     const queryType = 'UPDATE jobs SET status=$1 WHERE job_id=$2';
     const { job_id, status } = req.body
     // const user_id = res.locals.verified_id;

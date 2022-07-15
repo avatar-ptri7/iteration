@@ -16,16 +16,16 @@ function App() {
       <AuthProvider>
         <Routes>
           <Route path='/' element={<Layout />}>
-            <Route index element={<HomePage/>}/>
+            <Route index element={<HomePage />} />
             <Route exact path='login' element={<Login />} />
             <Route exact path='signup' element={<Signup />} />
-            <Route 
-              exact path='user' 
+            <Route
+              exact path='user'
               element={
-              <RequireAuth>
-                <User />
-              </RequireAuth>
-              } 
+                <RequireAuth>
+                  <User />
+                </RequireAuth>
+              }
             />
             <Route exact path='job-swipe' element={<JobSwipe />} />
             <Route

@@ -1,19 +1,24 @@
 import React, { useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import SwipeableViews from "react-swipeable-views";
 import { virtualize } from "react-swipeable-views-utils";
 import { mod } from 'react-swipeable-views-core';
 import axios from "axios";
+import { useAuth } from "./Auth.jsx";
 import User from './User.jsx';
+import HomePage from "./HomePage.jsx";
   // mod: Extended version of % with negative integer support.
 
 const VirtualizeSwipeableViews = virtualize(SwipeableViews);
 
 const styles = {
   slide: {
+    margin: '1em',
     padding: 15,
     minHeight: 100,
     color: '#fff',
+    border: '2px solid blue',
+    borderRadius: '24px'
   },
   slide1: {
     backgroundColor: '#FEA900',
@@ -35,7 +40,7 @@ let calledGetJobs = false;
 // TO-DO: need to figure out how to get new jobs (currently grabbing the same 10 jobs everytime getJobs is called)
 const getJobs = async (leftSide) => {
   console.log('Gathering jobs...')
-  
+
   await axios.get('/api/getjobs')
     .then(response => {
       console.log('Called getJobs successfully...')
@@ -52,7 +57,7 @@ const getJobs = async (leftSide) => {
       console.log('Job tracker...', elTracker);
     })
     .catch(err => console.log('Error in JobSwipe --> ', err));
-  
+
   calledGetJobs = true;
   console.log('Changed calledGetJobs status to...', calledGetJobs)
   console.log('Gathered jobs...', jobs)
@@ -108,6 +113,8 @@ function slideRenderer(params) {
 
 function JobSwipe() {
   const [index, setIndex] = useState(0);
+  let auth = useAuth();
+  let navigate = useNavigate();
 
   const handleChangeIndex = async newIndex => {
     let removedJob;
@@ -118,27 +125,27 @@ function JobSwipe() {
       elTracker -= 1;
       // TO-DO: call axios and add job to user jobs list
       await axios.post('/users/savejob', {
-        employer_name: removedJob.employer_name,
-        employer_logo: removedJob.employer_logo,
-        employer_website: removedJob.employer_website,
-        job_publisher: removedJob.job_publisher,
-        job_employment_type: removedJob.job_employment_type,
-        job_title: removedJob.job_title,
-        job_apply_link: removedJob.job_apply_link,
-        job_description: removedJob.job_description,
-        job_is_remote: removedJob.job_is_remote,
-        job_posted_at_datetime_utc: removedJob.job_posted_at_datetime_utc,
-        job_city: removedJob.job_city,
-        job_state: removedJob.job_state,
-        job_country: removedJob.job_country,
-        job_benefits: removedJob.job_benefits,
-        job_google_link: removedJob.job_google_link,
-        job_offer_expiration_timestamp: removedJob.job_offer_expiration_timestamp,
-        job_required_experience: removedJob.job_required_experience,
-        job_required_skills: removedJob.job_required_skills,
-        job_required_education: removedJob.job_required_education,
-        job_min_salary: removedJob.job_min_salary,
-        job_max_salary: removedJob.job_max_salary,
+        employer_name: removedJob[0].employer_name,
+        employer_logo: removedJob[0].employer_logo,
+        employer_website: removedJob[0].employer_website,
+        job_publisher: removedJob[0].job_publisher,
+        job_employment_type: removedJob[0].job_employment_type,
+        job_title: removedJob[0].job_title,
+        job_apply_link: removedJob[0].job_apply_link,
+        job_description: removedJob[0].job_description,
+        job_is_remote: removedJob[0].job_is_remote,
+        job_posted_at_datetime_utc: removedJob[0].job_posted_at_datetime_utc,
+        job_city: removedJob[0].job_city,
+        job_state: removedJob[0].job_state,
+        job_country: removedJob[0].job_country,
+        job_benefits: removedJob[0].job_benefits,
+        job_google_link: removedJob[0].job_google_link,
+        job_offer_expiration_timestamp: removedJob[0].job_offer_expiration_timestamp,
+        job_required_experience: removedJob[0].job_required_experience,
+        job_required_skills: removedJob[0].job_required_skills,
+        job_required_education: removedJob[0].job_required_education,
+        job_min_salary: removedJob[0].job_min_salary,
+        job_max_salary: removedJob[0].job_max_salary,
       })
         .then(response => console.log('Successful swipe right! Response...', response))
         .catch(err => console.log('Error in JobSwipe swipe right action...', err));
@@ -157,9 +164,18 @@ function JobSwipe() {
     };
   };
 
+  const onLogout = () => {
+    auth.signout(() => {
+      navigate('/', { replace: true });
+    });
+  };
+
   return (
     <div>
-      <Link to='/user' element={User} style={{margin: '0 auto'}}>Job App Tracker Board</Link>
+      <nav>
+        <Link to='/user' element={User} style={{ margin: '0 auto' }}>Job App Tracker Board</Link> {" | "}
+        <Link to='/' element={HomePage} style={{ textAlign: 'center', margin: '0 auto' }} onLogout={onLogout}>Logout</Link>
+      </nav>
       <VirtualizeSwipeableViews
         index={index}
         onChangeIndex={handleChangeIndex}
@@ -201,10 +217,10 @@ job_offer_expiration_timestamp: null
 job_posted_at_datetime_utc: "2022-07-07T07:19:12.000Z"
 job_posted_at_timestamp: 1657178352
 job_publisher: "FOX2Now Jobs"
-job_required_education: {postgraduate_degree: false, 
-                        professional_certification: false, 
-                        high_school: false, 
-                        associates_degree: false, 
+job_required_education: {postgraduate_degree: false,
+                        professional_certification: false,
+                        high_school: false,
+                        associates_degree: false,
                         bachelors_degree: false, …}
 job_required_experience: {no_experience_required: false, required_experience_in_months: null, experience_mentioned: true, experience_preferred: false}
 job_required_skills: null
