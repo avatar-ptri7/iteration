@@ -27,7 +27,7 @@
     "production": "cross-env NODE_ENV=production node backend/server.js",
     "dev": "concurrently \"cross-env NODE_ENV=development webpack serve --open\" \"cross-env NODE_ENV=development nodemon backend/server.js\"",
     "build": "cross-env NODE_ENV=production webpack",
-    "test": "react-scripts test",
+    "test": "jest",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -56,12 +56,14 @@
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^14.2.1",
     "axios": "^0.27.2",
+    "babel-jest": "^28.1.2",
     "babel-loader": "^8.2.5",
     "concurrently": "^7.2.2",
     "cross-env": "^7.0.3",
     "css-loader": "^6.7.1",
     "html-webpack-plugin": "^5.5.0",
     "jest": "^28.1.2",
+    "jest-environment-jsdom": "^28.1.2",
     "nodemon": "^2.0.19",
     "sass": "^1.53.0",
     "style-loader": "^3.3.1",

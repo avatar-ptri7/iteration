@@ -14,11 +14,13 @@ let AuthContext = createContext({user: null});
 function AuthProvider({ children }) {
   let [user, setUser] = useState(null);
 
+  // used in Login.jsx for post request to /auth/login and Signup.jsx for post request auth/signup, callback navigates to new endpoint
   let signin = (newUser, callback) => {
     setUser(newUser);
     callback();
   };
 
+  // signout functionality not yet implemented
   let signout = (callback) => {
     setUser(null);
     callback();
