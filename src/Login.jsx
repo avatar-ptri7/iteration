@@ -42,7 +42,6 @@ function Login() {
 
         <input type="submit" value="Login" />
       </form>
-      <br></br>
       <div style={styles.signup}>
         <p style={styles.p}>New user?</p>
         <Link to='/signup' element={Signup}>Sign up!</Link>
@@ -54,24 +53,33 @@ function Login() {
 const styles = {
   container: {
     boxSizing: 'border-box',
-    border: '2px solid red',
+    border: '200px solid red',
     borderRadius: '24px',
     padding: '1em',
     margin: '1em auto',
     background: '#fff',
     minWidth: '33vw',
     width: '50vw',
-    color: 'dark blue',
+    color: 'dark gray',
     font: 'cascade script'
   },
   form: {
     display: 'flex',
+    flexDirection: "column",
     justifyContent: 'center'
   },
   inputs: {
-    border: '1px solid blue',
-    padding: '.24em',
-    margin: '1em'
+    display: 'block',
+    color: 'rgba(24,0,69,0.7)',
+    boxShadow: 'rgb(25 4 69 / 5%) 0px 3px 6px',
+    border: '1px solid rgba(25, 4, 69, 0.1)',
+    borderRadius: '5px',
+    margin: '1em',
+    font: "'Lato', sans-serif"
+
+  },
+  'input': {
+    backgroundColor: "rgb(106, 79, 235)"
   },
   h1: {
     margin: '1em auto',
