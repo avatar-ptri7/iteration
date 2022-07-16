@@ -25,6 +25,7 @@ if (process.env.NODE_ENV === "production") {
   );
 };
 
+app.use(express.static('src'));
 
 // // Routes
 
@@ -33,6 +34,7 @@ app.use("/auth", authRouter);
 app.use("/api", apiRouter);
 
 // 404 Catch-All
+app.use('/favicon.ico', express.static(__dirname + '../src/assets/favicon.ico'))
 app.use("*", (req, res) => res.status(404).send("Not Found"));
 
 // Universal Error Handler

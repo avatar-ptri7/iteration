@@ -273,3 +273,26 @@ select {
     position: relative;
     margin: 0;
 }
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    background-color: #eeeeee;
+    padding: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.nav-links {
+    width: 50vw;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    column-gap: 50px;
+    margin-left: 25px;
+}
+
+.active {
+    color: #5271ff;
+    font-weight: bold;
+}

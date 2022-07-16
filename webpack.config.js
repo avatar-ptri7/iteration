@@ -38,10 +38,19 @@ module.exports = {
     proxy: {
       '/': `http://localhost:${process.env.PORT}`
     },
+<<<<<<< Updated upstream
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html'
     })
   ]
+=======
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: './src/index.html',
+            favicon: './src/assets/favicon.ico'
+        })
+    ]
+>>>>>>> Stashed changes
 }
