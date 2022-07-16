@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaMoneyBill } from 'react-icons/fa';
+import axios from 'axios';
 
 
 const MoneyRating = ({ moneyCount, rating, setRating, hover, setHover, id }) => {
@@ -7,6 +8,9 @@ const MoneyRating = ({ moneyCount, rating, setRating, hover, setHover, id }) => 
   
     const submitRating = async () => {
      await setRating(moneyCount);
+     axios.post('', {
+        job_id: 
+     })
     fetch('', {
         method: 'POST',
         headers: {
