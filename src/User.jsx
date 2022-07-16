@@ -66,11 +66,12 @@ function User(props) {
 
   //rendering logic
   if (jobs.length) {
+    console.log(jobs)
     return (
       <>
         <nav>
-          <Link to='/job-swipe' element={JobSwipe} style={{ textAlign: 'center', margin: '0 auto' }}>Job Swipe</Link> {" | "}
-          <Link to='/' element={HomePage} style={{ textAlign: 'center', margin: '0 auto' }} onLogout={onLogout}>Logout</Link>
+          <Link to='/job-swipe' style={{ textAlign: 'center', margin: '0 auto' }}>Job Swipe</Link> {" | "}
+          <Link to='/' style={{ textAlign: 'center', margin: '0 auto' }} onClick={onLogout}>Logout</Link>
         </nav>
         <div className={"row"}>
           {statuses.map(s => {
@@ -80,7 +81,9 @@ function User(props) {
                 <DropWrapper onDrop={onDrop} status={s.status}>
                   <Columns>
                     {jobs.filter(i => i.status === s.status)
-                      .map((i, idx) => <JobCard key={i.job_id} item={i} index={idx} moveItem={moveItem} status={s} />)}
+                      .map((i, idx) => {
+                        return <JobCard key={i.job_id} item={i} index={idx} moveItem={moveItem} status={s} />
+                      })}
                   </Columns>
                 </DropWrapper>
               </div>
