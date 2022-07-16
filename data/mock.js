@@ -34,19 +34,19 @@ const data = [{
 }];
 
 const statuses = [{
-    status: "1",
+    status: 1,
     status_name: "OPEN",
     color: "#EB5A46"
 }, {
-    status: "2",
+    status: 2,
     status_name: "APPLIED",
     color: "#00C2E0"
 }, {
-    status: "3",
+    status: 3,
     status_name: "INTERVIEW",
     color: "#C377E0"
 }, {
-    status: "4",
+    status: 4,
     status_name: "RESOLVED",
     color: "#3981DE"
 }];

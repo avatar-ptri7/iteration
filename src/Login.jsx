@@ -45,7 +45,7 @@ function Login() {
       <br></br>
       <div style={styles.signup}>
         <p style={styles.p}>New user?</p>
-        <Link to='/signup' element={Signup}>Sign up!</Link>
+        <Link to='/signup'>Sign up!</Link>
       </div>
     </div>
   );

@@ -173,8 +173,8 @@ function JobSwipe() {
   return (
     <div>
       <nav>
-        <Link to='/user' element={User} style={{ margin: '0 auto' }}>Job App Tracker Board</Link> {" | "}
-        <Link to='/' element={HomePage} style={{ textAlign: 'center', margin: '0 auto' }} onLogout={onLogout}>Logout</Link>
+        <Link to='/user' style={{ margin: '0 auto' }}>Job App Tracker Board</Link> {" | "}
+        <Link to='/' style={{ textAlign: 'center', margin: '0 auto' }} onClick={onLogout}>Logout</Link>
       </nav>
       <VirtualizeSwipeableViews
         index={index}
