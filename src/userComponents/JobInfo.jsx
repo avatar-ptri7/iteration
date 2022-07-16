@@ -41,6 +41,8 @@ const JobInfo = ({ show, onClose, item }) => {
             <div className="job-description">
             {item.description}
             </div>
+            <button>Apply</button>
+          <button>Favorite This Job</button>
             </div>
         </Modal>
     );

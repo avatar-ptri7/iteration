@@ -9,13 +9,13 @@ function Login() {
 
   const { register, handleSubmit, formState: { errors } } = useForm();
   let navigate = useNavigate();
-  // let location = useLocation();
+
   let auth = useAuth();
 
-  // let from = location.state?.from?.pathname || '/';
+
 
   const onSubmit = async formData => {
-    // console.log('Login form data passed to back-end --> ', formData);
+
 
     await axios.post('/auth/login', {
       email: formData.email,
@@ -24,9 +24,7 @@ function Login() {
       .then(response => {
         // response is the userId --> verifiedId
         console.log('Successful Login request... UserId --> ', response)
-        // let userId = response.data;
-        // navigate to User dashboard on successful signup using verifiedId to display correct info in User --> 
-        // navigate('/user', { replace: true });
+
         auth.signin(formData.email, () => {
           navigate('/user', { replace: true });
         })
@@ -34,27 +32,37 @@ function Login() {
       .catch(err => console.log('Login error --> ', err));
   }
   console.log(errors);
-  
+
   return (
     <div className='login' style={styles.container}>
       <h1 style={styles.h1}>Login</h1>
       <form onSubmit={handleSubmit(onSubmit)} style={styles.form}>
-        <input type="text" placeholder="Email" {...register("email", {required: true, pattern: /^\S+@\S+$/i})} style={styles.inputs}/>
-        <input type="password" placeholder="Password" {...register("password", {required: true})} style={styles.inputs}/>
+        <input type="text" placeholder="Email" {...register("email", { required: true, pattern: /^\S+@\S+$/i })} style={styles.inputs} />
+        <input type="password" placeholder="Password" {...register("password", { required: true })} style={styles.inputs} />
 
-        <input type="submit" value="Login"/>
+        <input type="submit" value="Login" />
       </form>
-      <p style={styles.p}>New user?</p>
-      <Link to='/signup' element={Signup} style={{textAlign: 'center', margin: '0 auto'}}>Sign up!</Link>
-  </div>
+      <br></br>
+      <div style={styles.signup}>
+        <p style={styles.p}>New user?</p>
+        <Link to='/signup' element={Signup}>Sign up!</Link>
+      </div>
+    </div>
   );
 }
 
 const styles = {
   container: {
     boxSizing: 'border-box',
+    border: '2px solid red',
+    borderRadius: '24px',
     padding: '1em',
-    margin: '0 auto'
+    margin: '1em auto',
+    background: '#fff',
+    minWidth: '33vw',
+    width: '50vw',
+    color: 'dark blue',
+    font: 'cascade script'
   },
   form: {
     display: 'flex',
@@ -68,6 +76,14 @@ const styles = {
   h1: {
     margin: '1em auto',
     textAlign: 'center'
+  },
+  p: {
+    textAlign: 'center',
+    margin: '0 auto'
+  },
+  signup: {
+    display: 'flex',
+    justifyContent: 'center'
   }
 };
 
