@@ -101,7 +101,7 @@ userController.getAllJobs = async (req, res, next) => {
     // get all the jobs that have that job_id
 
     const queryType =
-        // TO-DO: Test new query in ElephantSQL
+
       "SELECT uj.user_id, uj.status, j.* FROM users_jobs uj RIGHT OUTER JOIN jobs j ON uj.job_id=j.job_id WHERE uj.user_id=$1";
     // returns an array full of objects that are the jobs
     const params = [user_id];
@@ -129,7 +129,7 @@ userController.getJob = async (req, res, next) => {
     // get all the jobs that have that job_id
 
     const queryType =
-    // TO-DO: Test new query in ElephantSQL
+
       "SELECT users_jobs.user_id, users_jobs.status, jobs.* FROM users_jobs INNER JOIN jobs ON users_jobs.job_id = jobs.job_id WHERE users_jobs.user_id = $1 AND users_jobs.job_id = $2";
     // returns an array full of objects that are the jobs
     const params = [user_id, job_id];
@@ -150,10 +150,9 @@ userController.getJob = async (req, res, next) => {
 userController.updateStatus = async (req, res, next) => {
   try{
     
-    // TO-DO: Test new query in ElephantSQL
     const queryType = 'UPDATE users_jobs SET status=$1 WHERE job_id=$2 AND user_id=$3';
     const { job_id, status } = req.body
-    // const user_id = res.locals.verified_id;
+
     const params = [status, job_id, res.locals.user_id];
     res.locals.job = job_id;
 
