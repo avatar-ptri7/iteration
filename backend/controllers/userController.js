@@ -148,12 +148,6 @@ userController.getJob = async (req, res, next) => {
 
 userController.updateStatus = async (req, res, next) => {
   try{
-<<<<<<< HEAD
-
-=======
-    
-    // TO-DO: Update query to set users_jobs to status where job_id AND user_id match
->>>>>>> f2e293b (Added notes. Switching to new branch)
     const queryType = 'UPDATE jobs SET status=$1 WHERE job_id=$2';
     const { job_id, status } = req.body
     // const user_id = res.locals.verified_id;

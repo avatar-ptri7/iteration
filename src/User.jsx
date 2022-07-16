@@ -40,7 +40,6 @@ function User(props) {
   //onDrop function. Update job item with new status in database
   const onDrop = (item, monitor, status) => {
     axios.post('/users/updatestatus', {
-<<<<<<< HEAD
       job_id: `${item.job_id}`,
       status: `${status}`
     }).then(response => console.log("axios post response", response))
@@ -54,21 +53,6 @@ function User(props) {
         console.log(error)
       });
   };
-=======
-              // TO-DO: need to add user_id to post request
-              job_id: `${item.job_id}`,
-              status: `${status}`
-          }).then(response => console.log("axios post response", response))
-            .then(setJobs(prevState => {
-              const newItems = prevState
-                .filter(i => i.job_id !== item.job_id)
-                .concat({...item, status})
-                return [...newItems];
-            }))
-            .catch(function (error) {
-              console.log(error)});
-      };
->>>>>>> f2e293b (Added notes. Switching to new branch)
 
   //dragging function
   const moveItem = (dragIndex, hoverIndex) => {
@@ -93,21 +77,12 @@ function User(props) {
             return (
               <div key={s.status} className={"col-wrapper"}>
                 <h2 className={'col-header'}>{s.status_name}</h2>
-<<<<<<< HEAD
-                <DropWrapper onDrop={onDrop} status={s.status}>
-                  <Colunms>
-                    {jobs.filter(i => i.status === s.status)
-                      .map((i, idx) => <JobCard key={i.job_id} item={i} index={idx} moveItem={moveItem} status={s} />)}
-                  </Colunms>
-                </DropWrapper>
-=======
                   <DropWrapper onDrop={onDrop} status={s.status}>
                     <Columns>
                       {jobs.filter(i => i.status === s.status)
                             .map((i, idx ) => <JobCard key={i.job_id} item={i} index={idx} moveItem={moveItem} status={s} />)}
                     </Columns>
                   </DropWrapper>
->>>>>>> f2e293b (Added notes. Switching to new branch)
               </div>
             )
           }
