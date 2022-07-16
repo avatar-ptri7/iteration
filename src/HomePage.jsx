@@ -57,3 +57,4 @@ const styles = {
 
   }
 };
+export default HomePage;
