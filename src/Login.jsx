@@ -31,7 +31,7 @@ function Login() {
       })
       .catch(err => console.log('Login error --> ', err));
   }
-  console.log(errors);
+  // console.log(errors);
 
   return (
     <div className='login' style={styles.container}>
@@ -44,7 +44,7 @@ function Login() {
       </form>
       <div style={styles.signup}>
         <p style={styles.p}>New user?</p>
-        <Link to='/signup' element={Signup}>Sign up!</Link>
+        <Link to='/signup'>Sign up!</Link>
       </div>
     </div>
   );

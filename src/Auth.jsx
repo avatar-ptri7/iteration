@@ -1,17 +1,12 @@
 import React, { useState, createContext, useContext } from "react";
 import { useLocation, Navigate } from "react-router-dom";
-import { authProvider } from './authProvider.js';
-
-// interface AuthContextType {
-//   user: any;
-//   signin: (user: string, callback: VoidFunction) => void;
-//   signout: (callback: VoidFunction) => void;
-// }
 
 // generate default context
 let AuthContext = createContext({user: null});
+// let AuthContext = createContext();
 
 function AuthProvider({ children }) {
+
   let [user, setUser] = useState(null);
 
   // used in Login.jsx for post request to /auth/login and Signup.jsx for post request auth/signup, callback navigates to new endpoint
@@ -26,11 +21,10 @@ function AuthProvider({ children }) {
     callback();
   };
 
-
   let value = { user, signin, signout };
 
   return (
-    <AuthContext.Provider value={value}>
+    <AuthContext.Provider value={value} user={user}>
       {children}
     </AuthContext.Provider>
   );

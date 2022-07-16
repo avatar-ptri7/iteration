@@ -1,12 +1,8 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from 'react-router-dom';
 import SwipeableViews from "react-swipeable-views";
 import { virtualize } from "react-swipeable-views-utils";
 import { mod } from 'react-swipeable-views-core';
 import axios from "axios";
-import { useAuth } from "./Auth.jsx";
-import User from './User.jsx';
-import HomePage from "./HomePage.jsx";
   // mod: Extended version of % with negative integer support.
 
 const VirtualizeSwipeableViews = virtualize(SwipeableViews);
@@ -113,8 +109,6 @@ function slideRenderer(params) {
 
 function JobSwipe() {
   const [index, setIndex] = useState(0);
-  let auth = useAuth();
-  let navigate = useNavigate();
 
   const handleChangeIndex = async newIndex => {
     let removedJob;
@@ -164,18 +158,10 @@ function JobSwipe() {
     };
   };
 
-  const onLogout = () => {
-    auth.signout(() => {
-      navigate('/', { replace: true });
-    });
-  };
 
   return (
     <div>
-      <nav>
-        <Link to='/user' element={User} style={{ margin: '0 auto' }}>Job App Tracker Board</Link> {" | "}
-        <Link to='/' element={HomePage} style={{ textAlign: 'center', margin: '0 auto' }} onLogout={onLogout}>Logout</Link>
-      </nav>
+
       <VirtualizeSwipeableViews
         index={index}
         onChangeIndex={handleChangeIndex}

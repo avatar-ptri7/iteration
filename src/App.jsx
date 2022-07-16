@@ -9,11 +9,19 @@ import Login from './Login.jsx';
 import Signup from './Signup.jsx';
 import User from './User.jsx';
 import JobSwipe from "./JobSwipe.jsx";
+import NavLoginPage from "./navComponents/navLoginPage.jsx"
+import NavSignupPage from "./navComponents/navSignupPage.jsx"
+
 
 function App() {
+
   return (
     <DndProvider backend={HTML5Backend}>
       <AuthProvider>
+        <Routes>
+          <Route exact path='signup' element={<NavSignupPage />}/>
+          <Route path="/*" element={<NavLoginPage />} />
+        </Routes>
         <Routes>
           <Route path='/' element={<Layout />}>
             <Route index element={<HomePage />} />
