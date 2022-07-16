@@ -1,19 +1,11 @@
 import React, { useState, createContext, useContext } from "react";
 import { useLocation, Navigate } from "react-router-dom";
-import { authProvider } from './authProvider.js';
-
-// interface AuthContextType {
-//   user: any;
-//   signin: (user: string, callback: VoidFunction) => void;
-//   signout: (callback: VoidFunction) => void;
-// }
 
 // generate default context
 let AuthContext = createContext({user: null});
 // let AuthContext = createContext();
 
 function AuthProvider({ children }) {
-  console.log('AuthProvider was called')
 
   let [user, setUser] = useState(null);
 
@@ -39,7 +31,6 @@ function AuthProvider({ children }) {
 }
 
 function useAuth() {
-  console.log('useAuth was called --> ',useContext(AuthContext))
   return useContext(AuthContext);
 }
 

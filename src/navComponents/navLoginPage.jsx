@@ -1,14 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from '../Auth.jsx';
 
-function NavLoginPage (props) {
+function NavLoginPage () {
 
     const auth = useAuth()
-
-    // useEffect(() => {
-    //   console.log('auth.user from navLoginPage.jsx --> ',auth.user);
-    // });
     
     let navigate = useNavigate();
     const onLogout = () => {
