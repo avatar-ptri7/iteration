@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import JobCard from './userComponents/JobCard.jsx';
-import Colunms from './userComponents/Columns.jsx';
+import Columns from './userComponents/Columns.jsx';
 import { statuses } from '../data/mock.js';
 import DropWrapper from './userComponents/DropWrapper.jsx';
 import axios from 'axios';
@@ -66,11 +66,12 @@ function User(props) {
 
   //rendering logic
   if (jobs.length) {
+    console.log(jobs)
     return (
       <>
         <nav>
-          <Link to='/job-swipe' element={JobSwipe} style={{ textAlign: 'center', margin: '0 auto' }}>Job Swipe</Link> {" | "}
-          <Link to='/' element={HomePage} style={{ textAlign: 'center', margin: '0 auto' }} onLogout={onLogout}>Logout</Link>
+          <Link to='/job-swipe' style={{ textAlign: 'center', margin: '0 auto' }}>Job Swipe</Link> {" | "}
+          <Link to='/' style={{ textAlign: 'center', margin: '0 auto' }} onClick={onLogout}>Logout</Link>
         </nav>
         <div className={"row"}>
           {statuses.map(s => {
@@ -78,10 +79,12 @@ function User(props) {
               <div key={s.status} className={"col-wrapper"}>
                 <h2 className={'col-header'}>{s.status_name}</h2>
                 <DropWrapper onDrop={onDrop} status={s.status}>
-                  <Colunms>
+                  <Columns>
                     {jobs.filter(i => i.status === s.status)
-                      .map((i, idx) => <JobCard key={i.job_id} item={i} index={idx} moveItem={moveItem} status={s} />)}
-                  </Colunms>
+                      .map((i, idx) => {
+                        return <JobCard key={i.job_id} item={i} index={idx} moveItem={moveItem} status={s} />
+                      })}
+                  </Columns>
                 </DropWrapper>
               </div>
             )
