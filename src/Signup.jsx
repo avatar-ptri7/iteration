@@ -30,7 +30,7 @@ function Signup() {
       })
       .catch(err => console.log('Error in Signup --> ', err))
   }
-  console.log(errors);
+  // console.log(errors); 
   
   return (
     <div className='signup' style={styles.container}>
@@ -42,7 +42,7 @@ function Signup() {
         <input type="submit" value="Sign up"/>
       </form>
       <p style={styles.p}>Already a user?</p>
-      <Link to='/login' element={Login} style={{textAlign: 'center', margin: '0 auto'}}>Login</Link>
+      <Link to='/login' style={{textAlign: 'center', margin: '0 auto'}}>Login</Link>
   </div>
     
   );

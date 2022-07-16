@@ -31,7 +31,7 @@ function Login() {
       })
       .catch(err => console.log('Login error --> ', err));
   }
-  console.log(errors);
+  // console.log(errors);
 
   return (
     <div className='login' style={styles.container}>
