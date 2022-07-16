@@ -57,4 +57,21 @@ function RequireAuth({ children }) {
   return children;
 }
 
-export { useAuth, RequireAuth, AuthProvider };
+function NavAuth({ children }) {
+  let auth = useAuth();
+  let location = useLocation();
+
+  // if auth.user doesn't exist yet (aka not logged in), will Navigate to Login page
+  if (!auth.user) {
+    // Redirect them to the /login page, but save the current location they were
+    // trying to go to when they were redirected. This allows us to send them
+    // along to that page after they login, which is a nicer user experience
+    // than dropping them off on the home page.
+    console.log('Login to view your user dashboard!');
+    return <Navigate to="/login" state={{ from: location }} replace />;
+  }
+  // if auth.user exists, will return User page
+  return children;
+}
+
+export { useAuth, RequireAuth, AuthProvider, NavAuth };

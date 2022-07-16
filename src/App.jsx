@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, Routes, Outlet } from 'react-router-dom';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
@@ -16,6 +16,7 @@ import NavUserPage from "./navComponents/navUserPage.jsx"
 
 function App() {
 
+  
   const {isAuthenticated} = useAuth();
   console.log('isAuthenticated from App.jsx --> ',isAuthenticated)
 
