@@ -38,10 +38,27 @@ module.exports = {
     proxy: {
       '/': `http://localhost:${process.env.PORT}`
     },
+<<<<<<< HEAD
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html'
     })
   ]
+=======
+    devServer: {
+        static: {
+            publicPath: '/',
+            directory: path.resolve(__dirname, './public')
+        },
+        proxy: {
+            '/': `http://localhost:${process.env.PORT}`
+        },
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: './src/index.html'
+        })
+    ]
+>>>>>>> f2e293b (Added notes. Switching to new branch)
 }
