@@ -17,6 +17,7 @@ import NavUserPage from "./navComponents/navUserPage.jsx"
 function App() {
 
   const {isAuthenticated} = useAuth();
+  console.log('isAuthenticated from App.jsx --> ',isAuthenticated)
 
   return (
     <DndProvider backend={HTML5Backend}>

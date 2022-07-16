@@ -38,11 +38,11 @@ module.exports = {
     proxy: {
       '/': `http://localhost:${process.env.PORT}`
     },
+  },
     plugins: [
         new HtmlWebpackPlugin({
             template: './src/index.html',
             favicon: './src/assets/favicon.ico'
         })
     ]
-  }
-}
+};

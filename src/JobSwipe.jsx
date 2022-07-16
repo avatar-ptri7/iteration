@@ -172,10 +172,10 @@ function JobSwipe() {
 
   return (
     <div>
-      <nav>
+      {/* <nav>
         <Link to='/user' element={User} style={{ margin: '0 auto' }}>Job App Tracker Board</Link> {" | "}
         <Link to='/' element={HomePage} style={{ textAlign: 'center', margin: '0 auto' }} onLogout={onLogout}>Logout</Link>
-      </nav>
+      </nav> */}
       <VirtualizeSwipeableViews
         index={index}
         onChangeIndex={handleChangeIndex}
