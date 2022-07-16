@@ -66,7 +66,7 @@ function User(props) {
 
   //rendering logic
   if (jobs.length) {
-    console.log('jobs is --> ',jobs)
+
     return (
       <>
         {/* <nav>
