@@ -42,16 +42,11 @@ function Login() {
 
         <input type="submit" value="Login" />
       </form>
-<<<<<<< Updated upstream
       <br></br>
       <div style={styles.signup}>
         <p style={styles.p}>New user?</p>
         <Link to='/signup' element={Signup}>Sign up!</Link>
       </div>
-=======
-      <p style={styles.p}>New user?</p>
-      <Link to='/signup' element={Signup} style={{textAlign: 'center', margin: '0 auto'}}>Sign up!</Link>
->>>>>>> Stashed changes
     </div>
   );
 }
