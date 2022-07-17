@@ -53,7 +53,7 @@ function Login() {
 const styles = {
   container: {
     boxSizing: 'border-box',
-    border: '200px solid red',
+    border: '1px solid red',
     borderRadius: '24px',
     padding: '1em',
     margin: '1em auto',
