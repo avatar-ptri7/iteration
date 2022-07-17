@@ -14,7 +14,6 @@ function User(props) {
     const fetchData = async () => {
       try {
         const response = await axios.get('/users/getalljobs');
-        console.log("axios response", response)
         setJobs(response.data);
       } catch (error) {
         console.error(error.message);
