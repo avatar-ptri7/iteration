@@ -1,4 +1,5 @@
 import React from "react";
+import axios from 'axios';
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from '../Auth.jsx';
 
@@ -7,10 +8,18 @@ function NavSignupPage () {
     const auth = useAuth()
     
     let navigate = useNavigate();
+
     const onLogout = () => {
+
         auth.signout(() => {
             navigate('/', { replace: true });
         });
+
+        axios.post('/auth/signout')
+            .then(response => {
+                console.log('Successful Signout request...')
+            })
+            .catch(err => console.log('Signout error --> ', err));
     };
 
     const links = [];
