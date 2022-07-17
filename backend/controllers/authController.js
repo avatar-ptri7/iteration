@@ -109,7 +109,7 @@ authController.createSession = async (req, res, next) => {
     const params = [token, user_id];
     if (token && user_id) {
       await db.query(query, params);
-      res.cookie('SID', token, {httpOnly: true});
+      res.cookie('SID', token, {maxAge: 24 * 60 * 60 * 1000, httpOnly: true});
     } else {
       next({
         log: 'Error in authController.createSession: no user/token',
@@ -171,6 +171,40 @@ authController.verifySession = async (req, res, next) => {
     })
   }
 
+};
+
+authController.endSession = async (req, res, next) => {
+  const user_id = res.locals.user_id;
+  let token;
+  try {
+    token = await jwt.sign({ user_id }, secret);
+  } catch (error) {
+    next({
+      log: 'Error in authController.endSession: unable to sign token',
+      status: 500,
+      message: 'Unable to sign token'
+    })
+  }
+  try {
+    const query = 'UPDATE users SET token = null WHERE user_id=$1';
+    const params = [user_id];
+    if (token && user_id) {
+      await db.query(query, params);
+    } else {
+      next({
+        log: 'Error in authController.endSession: no user/token',
+        status: 400,
+        message: 'No user/token'
+      })
+    }
+  } catch (error) {
+    next({
+      log: 'Error in authController.endSession: could not remove session from database',
+      status: 500,
+      message: 'Database Error'
+    })
+  }
+  next();
 };
 
 module.exports = authController;

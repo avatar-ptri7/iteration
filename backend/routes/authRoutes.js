@@ -10,7 +10,15 @@ router.post('/signup', authController.encryptPassword, userController.signup, au
 })
 
 router.post('/login', authController.verifyUser, authController.createSession,  (req, res) => {
-    return res.status(200).json(res.locals.verified_id)
+    return res.status(200).json(res.locals.user_id)
+})
+
+router.post('/verify', authController.verifySession, (req, res) => {
+    return res.status(200).json(res.locals.user_id)
+})
+
+router.post('/signout', authController.verifySession, authController.endSession, (req, res) => {
+    return res.status(200)
 })
 
 module.exports = router;
