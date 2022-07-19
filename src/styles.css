@@ -273,3 +273,10 @@ select {
     position: relative;
     margin: 0;
 }
+/* input[ type= 'radio' ] {
+    display: none;
+} */
+.money {
+    cursor: pointer;
+    transition: color 200ms;
+}

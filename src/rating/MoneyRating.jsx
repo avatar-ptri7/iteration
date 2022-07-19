@@ -1,53 +1,76 @@
 import React from 'react';
 import { FaMoneyBill } from 'react-icons/fa';
-import axios from 'axios';
 
 
-const MoneyRating = ({ moneyCount, rating, setRating, hover, setHover, id }) => {
-  
-  
-    const submitRating = async () => {
-     await setRating(moneyCount);
-     axios.post('', {
-        job_id: 
-     })
-    fetch('', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            id,
-            rating
+const MoneyRating = ({
+  moneyCount,
+  rating,
+  setRating,
+  hover,
+  setHover,
+  id,
+}) => {
+  // const handleChange =  (e) => {
 
-        })
-        .then(data => data.json())
-        .then(data => {
-            setRating(moneyCount)
-        })
-        .catch((e) => {
-            console.log({e});
-        })
-    })
-  };
+  //   setRating(e.target.value)
+
+  //   console.log('rating submitRating----->', rating);
+  //   console.log( typeof(id));
+
+    // axios.post('/users/rank', {
+    //   "id" : `${id}`,
+    //   "rating": `${rating}`
+    // }).then(response => {
+    //    console.log('response from DB ----->', response);
+    // }).catch(err => console.log('Error in MoneyRating Component'));
+  //};
+
+
+  // useEffect(() => {
+  //   axios
+  //     .post('/users/rank', {
+  //       id: `${id}`,
+  //       rating: `${rating}`,
+  //     })
+  //     .then((response) => {
+  //       console.log('response from DB ----->', response);
+  //     })
+  //     .catch((err) => console.log('Error in MoneyRating Component'));
+  // }, [rating]);
+
   return (
+    // <FaMoneyBill
+    //   className='money'
+    //   rating={rating}
+    //   onMouseEnter={() => setHover(moneyCount)}
+    //   onMouseLeave={() => setHover(null)}
+    //   color={moneyCount <= (hover || rating) ? '#85BB65' : '#D3D3D3'}
+    //   onClick={setRating(moneyCount)}
+    // />
     <div>
-      <form>
+      {/* <form>
         <label>
           <input
             type='radio'
             name='rating'
+            checked={null}
             value={moneyCount}
-            onClick={() => setRating(moneyCount)}
-          />
+            onClick= {handleChange}
+          /> */}
           <FaMoneyBill
+            name='rating'
+            className='money'
             rating={rating}
             onMouseEnter={() => setHover(moneyCount)}
             onMouseLeave={() => setHover(null)}
-            color={moneyCount <= (hover || rating) ? '#85BB65' : '#D3D3D3'}
+            color={moneyCount <=  (hover || rating) ? '#85BB65' : '#D3D3D3'}
+            onClick={() =>{
+              console.log('hello test');
+              return setRating(moneyCount)}}
           />
-        </label>
-      </form>
+        {/* </label>
+        </form> */}
+
     </div>
   );
 };

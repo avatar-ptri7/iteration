@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Modal from "react-modal";
 import { useForm } from 'react-hook-form';
+import MoneyHolder from '../rating/MoneyHolderRater.jsx';
+
 
 Modal.setAppElement("#root");
 
 const JobInfo = ({ show, onClose, item }) => {
     const { register, handleSubmit, formState: { errors } } = useForm();
+    
 
     return (
         <Modal
@@ -44,6 +47,7 @@ const JobInfo = ({ show, onClose, item }) => {
             <button>Apply</button>
           <button>Favorite This Job</button>
             </div>
+            <MoneyHolder id={item.job_id} />
         </Modal>
     );
 };

@@ -167,5 +167,25 @@ userController.updateStatus = async (req, res, next) => {
     });
   }
 }
+userController.updateRank = async (req, res, next) => {
+  console.log('inside updateRank')
+  const {id, rating} = req.body
+  console.log(id)
+  console.log('rating---->', rating);
+  const rankQuery = `select * from users_jobs where user_id =${res.locals.user_id} and job_id = ${id}`
+  const updateRankQuery = `update users_jobs set rank = ${rating} where job_id = ${id} and user_id = ${res.locals.user_id}`
+
+  //searching updating the rank of the particular job for the logged in user.
+  await db.query(updateRankQuery)
+  console.log('updated in db?')
+  db.query(rankQuery)
+    .then((data) => {
+      console.log(data.rows[0].rank);
+      res.locals.dbData = data.rows[0].rank
+      return next();
+    })
+
+ 
+}
 
 module.exports = userController;
