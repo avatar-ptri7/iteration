@@ -19,12 +19,12 @@ const JobInfo = ({ show, onClose, item }) => {
       <div className="job-details">
         <div className={"close-btn-ctn"}>
           <div style={{ flex: "1 90%" }} >
-            <h1 style={{ marginBottom: "0" }}>{item.job_title}</h1>
-            <p style={{ color: "gray", fontSize: "18px", marginTop: "5px", marginBottom: "30px" }} >{item.employer_name}</p>
+            <h1 style={{ marginBottom: "0" , textAlign: 'center'}}>{item.job_title}</h1>
+            <p style={{ color: "gray", fontSize: "18px", marginTop: "5px", marginBottom: "30px", textAlign: 'center'}} >{item.employer_name}</p>
           </div>
           <button className="close-btn" onClick={onClose}>Close</button>
         </div>
-        <div>
+        <div style={{ display: 'flex', flexDirection: 'column'}}>
 
           <form className="job-details-wrapper" >
             <div className="job-details-job"></div>
@@ -66,8 +66,8 @@ const JobInfo = ({ show, onClose, item }) => {
           <div className="job-description">
             {item.description}
           </div>
-          <button>Apply</button>
-          <button>Favorite This Job</button>
+          <button style={{width: '100px', alignSelf: 'center', borderRadius: '8px'}}>Apply</button>
+        
             </div>
             <MoneyHolder id={item.job_id} />
             </div>

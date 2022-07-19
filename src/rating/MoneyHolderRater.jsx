@@ -6,9 +6,6 @@ import axios from 'axios';
 const MoneyHolder = ({ id }) => {
   const [rating, setRating] = useState(null);
   const [hover, setHover] = useState(null);
-  // useEffect(() => {
-  //   console.log('new Rating----->', rating);
-  // }, [rating, id]);
 
   useEffect(() => {
     axios
@@ -25,7 +22,7 @@ const MoneyHolder = ({ id }) => {
 
   return (
     
-    <div>
+    <div className='moneyHolder'>
       {[...Array(5)].map((item, i) => (
         <MoneyRating
           moneyCount={i + 1}
