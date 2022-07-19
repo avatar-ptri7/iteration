@@ -7,9 +7,9 @@ const saltFactor = parseInt(process.env.SALT_WORK_FACTOR);
 const authController = {};
 
 authController.encryptPassword = async (req, res, next) => {
-  // console.log('request body --> ', req.body)
+  console.log('request body --> ', req.body)
   const { password } = req.body;
-  // console.log('inside encryptPassword')
+  console.log('inside encryptPassword')
   if (password) {
     console.log('Encrypting password...');
     try {

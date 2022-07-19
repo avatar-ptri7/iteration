@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Modal from "react-modal";
 import { useForm } from 'react-hook-form';
+import MoneyHolder from '../rating/MoneyHolderRater.jsx';
+
 
 Modal.setAppElement("#root");
 
@@ -66,10 +68,12 @@ const JobInfo = ({ show, onClose, item }) => {
           </div>
           <button>Apply</button>
           <button>Favorite This Job</button>
-        </div>
-      </div>
-    </Modal >
-  );
+            </div>
+            <MoneyHolder id={item.job_id} />
+            </div>
+        </Modal>
+       
+    );
 };
 
 const styles = {

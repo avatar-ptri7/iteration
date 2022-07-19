@@ -13,6 +13,7 @@ import NavLoginPage from "./navComponents/navLoginPage.jsx"
 import NavSignupPage from "./navComponents/navSignupPage.jsx"
 
 
+
 function App() {
 
   let auth = useAuth();

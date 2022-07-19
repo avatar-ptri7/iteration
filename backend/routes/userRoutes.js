@@ -31,5 +31,9 @@ router.post('/updatestatus', authController.verifySession, userController.update
   console.log("updating status!");
     return res.status(200).json(res.locals.job)
 })
+router.post('/rank',authController.verifySession, userController.updateRank, (req, res) => {
+  console.log('last rank works')
+  return res.status(201).json(res.locals.dbData);
+})
 
 module.exports = router;
