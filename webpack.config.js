@@ -27,7 +27,11 @@ module.exports = {
         test: /.(css|scss)$/,
         exclude: /node_modules/,
         use: ['style-loader', 'css-loader'],
-      }
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
+      },
     ],
   },
   devServer: {
@@ -39,10 +43,10 @@ module.exports = {
       '/': `http://localhost:${process.env.PORT}`
     },
   },
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: './src/index.html',
-            favicon: './src/assets/favicon.ico'
-        })
-    ]
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+      favicon: './src/assets/favicon.ico'
+    })
+  ]
 };

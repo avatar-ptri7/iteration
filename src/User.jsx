@@ -54,23 +54,24 @@ function User(props) {
   if (jobs.length) {
 
     return (
-        <div className={"row"}>
-          {statuses.map(s => {
-            return (
-              <div key={s.status} className={"col-wrapper"}>
-                <h2 className={'col-header'}>{s.status_name}</h2>
-                <DropWrapper onDrop={onDrop} status={s.status}>
-                  <Columns>
-                    {jobs.filter(i => i.status === s.status)
-                      .map((i, idx) => {
-                        return <JobCard key={i.job_id} item={i} index={idx} moveItem={moveItem} status={s} />
-                      })}
-                  </Columns>
-                </DropWrapper>
-              </div>
-            )
-          })}
-        </div>
+      <div className={"row"}>
+        {statuses.map(s => {
+          return (
+            <div key={s.status} className={"col-wrapper"}>
+              <h2 className={'col-header'}>{s.status_name}</h2>
+              <DropWrapper onDrop={onDrop} status={s.status}>
+                <Columns>
+                  {jobs.filter(i => i.status === s.status)
+                    .map((i, idx) => {
+                      
+                      return <JobCard key={i.job_id} item={i} index={idx} moveItem={moveItem} status={s} />
+                    })}
+                </Columns>
+              </DropWrapper>
+            </div>
+          )
+        })}
+      </div>
     )
   } else return (
     <div className={"row"}>
@@ -78,10 +79,10 @@ function User(props) {
         return (
           <div key={s.status} className={"col-wrapper"}>
             <h2 className={'col-header'}>{s.status_name}</h2>
-              <DropWrapper onDrop={onDrop} status={s.status}>
-                <Columns>
-                </Columns>
-              </DropWrapper>
+            <DropWrapper onDrop={onDrop} status={s.status}>
+              <Columns>
+              </Columns>
+            </DropWrapper>
           </div>
         )
       })}

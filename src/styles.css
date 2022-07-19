@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
 
+* {
+  font-family: "Lato", sans-serif;
+}
+
 :root {
     --primary-color: rgb(62, 100, 255);
     --complete-color: #27aa80;
@@ -7,6 +11,14 @@
     --disabled-color: #fad6d6;
     --background-color: #f5eaea;
 }
+#root {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    height: 100vh;
+    width: 100vw;
+  }
 .button{
     display: inline-block;
     text-decoration: none;
@@ -58,6 +70,7 @@ body {
     color: var(--text-color);
     font-family:'Poppins', sans-serif;
     margin: 0;
+    display: flex;
 }
 
 a {
@@ -71,6 +84,25 @@ p {
     overflow-wrap: break-word;
     text-align: left;
 }
+
+.job-details label, .job-details input {
+margin-bottom:5px;
+width: 80%;
+}
+
+.job-details label {
+    font-size: 14px;
+    display: block;
+}
+
+.job-details input {
+  padding: 10px;
+  border: 1px solid rgba(25,4,69,0.1);
+  border-radius: 4px;
+  outline: none;
+  box-shadow: rgb(25 4 69 / 5%) 0px 2px 7px;
+}
+
 
 label {
     font-size: 20px;
@@ -105,10 +137,16 @@ label {
 .title {
     width: 100%;
     height: 100%;
-    background-color: #000;
     font-size: 135px;
-    color: white;
-    mix-blend-mode: multiply;
+    background-color: #000;
+    /*color: white;
+    mix-blend-mode: multiply; */
+    text-shadow: rgba(235, 242, 244, 0.204) 5px 2px 7px;
+     background-image: url(https://source.unsplash.com/8lnbXtxFGZw);
+    background-clip: text;
+    background-size: cover;
+    -webkit-background-clip: text;
+    color: rgba(40, 109, 85, 0.426);
 }
 /*
   button, input {
@@ -152,7 +190,7 @@ select {
 .row {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .item {
@@ -229,7 +267,7 @@ select {
     background-color: #F4F5F7;
     border-radius: 2px;
     margin: 48px 0 80px;
-    min-height: 450px;
+    height: 600px;
     width: 800px;
     outline: none;
     padding: 20px;
@@ -249,6 +287,17 @@ select {
 .close-btn-ctn {
     display: flex;
 }
+
+.job-details .close-btn {
+    height: 32px;
+    width: 60px;
+    font-size: 16px;
+    color: #031D2C;
+    border: 1px solid rgba(25,4,69,0.1);
+    box-shadow: rgb(25 4 69 / 5%) 0px 2px 7px;
+    border-radius: 8px;
+    background-color: white;
+    }
 
 .close-btn {
     height: 40px;
@@ -272,6 +321,8 @@ select {
     float: left;
     position: relative;
     margin: 0;
+        border: 1px solid rgba(25,4,69,0.1);
+    box-shadow: rgb(25 4 69 / 5%) 0px 2px 7px;
 }
 
 nav {
