@@ -1,6 +1,6 @@
 import React from "react";
 import axios from 'axios';
-import { Link, useNavigate  } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useAuth } from './Auth.jsx';
 
@@ -33,17 +33,18 @@ function Login() {
   // console.log(errors);
 
   return (
-    <div className='login' style={styles.container}>
-      <h1 style={styles.h1}>Login</h1>
-      <form onSubmit={handleSubmit(onSubmit)} style={styles.form}>
-        <input type="text" placeholder="Email" {...register("email", { required: true, pattern: /^\S+@\S+$/i })} style={styles.inputs} />
-        <input type="password" placeholder="Password" {...register("password", { required: true })} style={styles.inputs} />
+    <div style={styles.container}>
+      <div className='login' style={styles.login}>
+        <h1 style={styles.h1}>Log in</h1>
+        <form onSubmit={handleSubmit(onSubmit)} style={styles.form}>
+          <input type="text" placeholder="Email" {...register("email", { required: true, pattern: /^\S+@\S+$/i })} style={styles.inputs} />
+          <input type="password" placeholder="Password" {...register("password", { required: true })} style={styles.inputs} />
 
-        <input type="submit" value="Login" />
-      </form>
-      <div style={styles.signup}>
-        <p style={styles.p}>New user?</p>
-        <Link to='/signup'>Sign up!</Link>
+          <button type="submit" style={styles.button}>Continue</button>
+        </form>
+        <div style={styles.signup}>
+          <p><span style={styles.span}>Don't have an account?</span> <Link to='/signup'>Sign up!</Link></p>
+        </div>
       </div>
     </div>
   );
@@ -51,16 +52,24 @@ function Login() {
 
 const styles = {
   container: {
+    display: 'flex',
+    flexDirection: "row",
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100vh'
+  },
+  login: {
     boxSizing: 'border-box',
-    border: '1px solid red',
-    borderRadius: '24px',
+    boxShadow: 'rgb(119 118 120 / 35%) 0px 3px 6px',
+    borderRadius: '4px',
     padding: '1em',
     margin: '1em auto',
-    background: '#fff',
-    minWidth: '33vw',
-    width: '50vw',
-    color: 'dark gray',
-    font: 'cascade script'
+    background: '#eeeeee',
+    minWidth: '350px',
+    width: '350px',
+    maxWidth: '350px',
+    color: '#5271ff',
+    font: 'Lato'
   },
   form: {
     display: 'flex',
@@ -69,28 +78,36 @@ const styles = {
   },
   inputs: {
     display: 'block',
+    padding: '1em',
     color: 'rgba(24,0,69,0.7)',
     boxShadow: 'rgb(25 4 69 / 5%) 0px 3px 6px',
     border: '1px solid rgba(25, 4, 69, 0.1)',
     borderRadius: '5px',
     margin: '1em',
+    marginBottom: '0',
     font: "'Lato', sans-serif"
 
   },
-  'input': {
-    backgroundColor: "rgb(106, 79, 235)"
+  button: {
+    backgroundColor: 'rgb(106, 79, 235)',
+    color: '#ffffff',
+    padding: '0.5em 1em',
+    margin: '1em',
+    border: '1px solid rgba(0,0,0,0)',
+    borderRadius: '5px',
+    fontSize: '1em'
   },
   h1: {
     margin: '1em auto',
     textAlign: 'center'
   },
-  p: {
-    textAlign: 'center',
-    margin: '0 auto'
+  span: {
+    color: '#6b6a6a'
   },
   signup: {
     display: 'flex',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    fontSize: '0.8em'
   }
 };
 

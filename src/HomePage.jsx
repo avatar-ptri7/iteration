@@ -10,7 +10,7 @@ function HomePage() {
       {/* <h1 style={styles.h1}>Secure The Bag</h1> */}
       <div>
         <section className="showcase">
-          <img src="https://source.unsplash.com/8lnbXtxFGZw" />
+          {/* <img src="https://source.unsplash.com/8lnbXtxFGZw" /> */}
           <h1 className="title">SECURE THE BAG</h1>
         </section>
       </div>
@@ -33,7 +33,7 @@ const styles = {
     borderRadius: '24px',
     padding: '1em',
     margin: '1em auto',
-    background: 'black',
+
     width: '50%',
     color: 'dark blue',
     font: 'cascade script'
@@ -50,7 +50,7 @@ const styles = {
   h1: {
     margin: '1em auto',
     textAlign: 'center',
-    font: "Bradley Hand, cursive"
+    font: "Bradley Hand, cursive",
   },
   p: {
     textAlign: 'center',
