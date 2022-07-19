@@ -9,6 +9,8 @@ Modal.setAppElement("#root");
 const JobInfo = ({ show, onClose, item }) => {
   const { register, handleSubmit, formState: { errors } } = useForm();
 
+  const appCloseDate = new Date(item.job_offer_expiration_timestamp).toDateString()
+
   return (
     <Modal
       isOpen={show}
@@ -24,37 +26,43 @@ const JobInfo = ({ show, onClose, item }) => {
           </div>
           <button className="close-btn" onClick={onClose}>Close</button>
         </div>
-        <div style={{ display: 'flex', flexDirection: 'column'}}>
-
+        <div>
+          <div className="job-details-job">
+            <p>Application Closes: {appCloseDate}</p>
+            <p>Salary: {item.job_min_salary}-{item.job_max_salary}</p>
+            <p>City: {item.job_city}</p>
+            <p>Remote?: {item.job_is_remote}</p>
+            <p>Type: {item.job_employment_type}</p>
+            <p>Job Description: {item.job_description}</p>
+          </div>
           <form className="job-details-wrapper" >
-            <div className="job-details-job"></div>
             <div style={styles.row}>
               <div style={{ marginRight: "10px" }}>
-                <label for="employer">Company: </label>
+                <label htmlFor="employer">Company: </label>
                 <input type="text" size="100" {...register("employer")} defaultValue={item.employer_name} />
               </div>
               <div>
-                <label for="title">Job Title: </label>
+                <label htmlFor="title">Job Title: </label>
                 <input type="text" size="100" {...register("title")} defaultValue={item.job_title} />
               </div>
               <div>
-                <label for="expiration">Application Closes: </label>
+                <label htmlFor="expiration">Application Closes: </label>
                 <input type="text" size="100" {...register("expiration")} defaultValue={item.job_expiration} />
               </div>
             </div>
 
             <div style={styles.row}>
               <div>
-                <label for="application">Application Link: </label>
+                <label htmlFor="application">Application Link: </label>
                 <input type="text" size="100" {...register("application")} defaultValue={item.application_link} />
               </div>
               <div>
-                <label for="salary">Max Salary: </label>
+                <label htmlFor="salary">Max Salary: </label>
                 <input type="text" size="100" {...register("salary")} defaultValue={item.max_salary} />
               </div>
               <div>
 
-                <label for="city">City: </label>
+                <label htmlFor="city">City: </label>
                 <input type="text" size="100" {...register("city")} defaultValue={item.city} />
               </div>
             </div>
@@ -62,7 +70,7 @@ const JobInfo = ({ show, onClose, item }) => {
           </form>
 
           
-          <label for="city">Job Description: </label>
+          <label htmlFor="city">Job Description: </label>
           <div className="job-description">
             {item.description}
           </div>
