@@ -28,6 +28,7 @@ const MoneyHolder = ({ id }) => {
     <div>
       {[...Array(5)].map((item, i) => (
         <MoneyRating
+          key={i}
           moneyCount={i + 1}
           rating={rating}
           setRating={setRating}
