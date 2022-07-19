@@ -68,17 +68,12 @@ const JobInfo = ({ show, onClose, item }) => {
           </div>
           <button>Apply</button>
           <button>Favorite This Job</button>
-<<<<<<< HEAD
             </div>
             <MoneyHolder id={item.job_id} />
+            </div>
         </Modal>
+       
     );
-=======
-        </div>
-      </div>
-    </Modal >
-  );
->>>>>>> dev
 };
 
 const styles = {
