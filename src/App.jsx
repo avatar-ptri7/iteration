@@ -2,19 +2,30 @@ import React from "react";
 import { Route, Routes, Outlet } from 'react-router-dom';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import { RequireAuth, AuthProvider } from './Auth.jsx';
+import { RequireAuth, AuthProvider, useAuth } from './Auth.jsx';
 import Layout from './Layout.jsx';
 import HomePage from './HomePage.jsx';
 import Login from './Login.jsx';
 import Signup from './Signup.jsx';
 import User from './User.jsx';
 import JobSwipe from "./JobSwipe.jsx";
+import NavLoginPage from "./navComponents/navLoginPage.jsx"
+import NavSignupPage from "./navComponents/navSignupPage.jsx"
+
 
 
 function App() {
+
+  let auth = useAuth();
+  console.log('auth from App.jsx --> ',auth)
+
   return (
     <DndProvider backend={HTML5Backend}>
       <AuthProvider>
+        <Routes>
+          <Route exact path='login' element={<NavLoginPage />}/>
+          <Route path="/*" element={<NavSignupPage />} />
+        </Routes>
         <Routes>
           <Route path='/' element={<Layout />}>
             <Route index element={<HomePage />} />
@@ -28,7 +39,13 @@ function App() {
                 </RequireAuth>
               }
             />
-            <Route exact path='job-swipe' element={<JobSwipe />} />
+            <Route exact path='job-swipe'
+              element={
+                <RequireAuth>
+                  <JobSwipe />
+                </RequireAuth>
+              }
+            />
             <Route
               path="*"
               element={

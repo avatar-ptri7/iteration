@@ -1,48 +1,65 @@
-import React, { useState, createContext, useContext } from "react";
-import { useLocation, Navigate } from "react-router-dom";
-import { authProvider } from './authProvider.js';
-
-// interface AuthContextType {
-//   user: any;
-//   signin: (user: string, callback: VoidFunction) => void;
-//   signout: (callback: VoidFunction) => void;
-// }
+import React, { useState, createContext, useContext, useEffect } from "react";
+import { useLocation, Navigate, useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 // generate default context
 let AuthContext = createContext({user: null});
-
-function AuthProvider({ children }) {
-  let [user, setUser] = useState(null);
-
-  // used in Login.jsx for post request to /auth/login and Signup.jsx for post request auth/signup, callback navigates to new endpoint
-  let signin = (newUser, callback) => {
-    setUser(newUser);
-    callback();
-  };
-
-  // signout functionality not yet implemented
-  let signout = (callback) => {
-    setUser(null);
-    callback();
-  };
-
-
-  let value = { user, signin, signout };
-
-  return (
-    <AuthContext.Provider value={value}>
-      {children}
-    </AuthContext.Provider>
-  );
-}
+// let AuthContext = createContext();
 
 function useAuth() {
   return useContext(AuthContext);
 }
 
+function AuthProvider({ children }) {
+
+  const [user, setUser] = useState(null);
+  
+  // used in Login.jsx for post request to /auth/login and Signup.jsx for post request auth/signup, callback navigates to new endpoint
+  const signin = (newUser, callback) => {
+    setUser(newUser);
+    callback();
+  };
+  
+  const signout = (callback) => {
+    setUser(null);
+    callback();
+  };
+  
+  const verify = (currUser, callback) => {
+    setUser(currUser)
+    callback();
+  }
+  
+  let value = { user, signin, signout, verify };
+
+  return (
+    <AuthContext.Provider value={value} user={user}>
+      {children}
+    </AuthContext.Provider>
+  );
+}
+
+
 function RequireAuth({ children }) {
+
   let auth = useAuth();
   let location = useLocation();
+  let navigate = useNavigate();
+
+  // check verify session on reload
+  const loadUser = async () => {
+    await axios.post('/auth/verify')
+    .then(response => {
+      // response is the userId --> verifiedId
+      console.log('Successful verify request!')
+      
+      auth.verify(response.data, () => {
+        navigate(location.pathname, { replace: true });
+      })
+    })
+    .catch(err => console.log('Unsuccessful Verify request--please log in'));
+  };
+  useEffect(() => {loadUser()},[])
 
   // if auth.user doesn't exist yet (aka not logged in), will Navigate to Login page
   if (!auth.user) {

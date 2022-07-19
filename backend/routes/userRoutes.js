@@ -13,7 +13,7 @@ router.get(
   "/getalljobs", authController.verifySession,
   userController.getAllJobs,
   (req, res) => {
-    console.log("attempting to get all jobs", res.locals);
+    console.log("attempting to get all jobs...");
     return res.status(200).json(res.locals.values);
   }
 );
@@ -23,7 +23,7 @@ router.post(
   "/savejob", authController.verifySession, 
   userController.saveJob,
   (req, res) => {
-    console.log("inside userRoute");
+    console.log("inside userRoute...");
     return res.status(200).json(res.locals.user);
   }
 );
