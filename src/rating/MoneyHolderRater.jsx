@@ -14,7 +14,7 @@ const MoneyHolder = ({ id }) => {
         rating: `${rating}`,
       })
       .then((response) => {
-        console.log('response from DB ----->', response);
+        //need to handle the response sending to the JobCard to display
       })
       .catch((err) => console.log('Error in MoneyRating Component'));
   }, [rating]);

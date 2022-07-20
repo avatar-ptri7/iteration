@@ -34,6 +34,10 @@ router.post('/updatestatus', authController.verifySession, userController.update
 router.post('/rank',authController.verifySession, userController.updateRank, (req, res) => {
   console.log('last rank works')
   return res.status(201).json(res.locals.dbData);
+});
+router.post('/apply', authController.verifySession, userController.applyStatus, (req, res) => {
+  console.log('inside last middleware for /apply');
+  return res.status(200).json(res.locals.newDbStatus)
 })
 
 module.exports = router;
