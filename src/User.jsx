@@ -8,6 +8,12 @@ import axios from 'axios';
 function User(props) {
 
   const [jobs, setJobs] = useState([]);
+  const [status, setStatus] = useState(null);
+ 
+  useEffect(() => {
+    console.log('inside of user---->', status);
+},[status]);
+
 
   //Grabbing our data from the database
   useEffect(() => {
@@ -34,7 +40,9 @@ function User(props) {
           .filter(i => i.job_id !== item.job_id)
           .concat({ ...item, status })
         return [...newItems];
-      }))
+      })
+      
+      )
       .catch(function (error) {
         console.log(error)
       });
@@ -64,7 +72,7 @@ function User(props) {
                   {jobs.filter(i => i.status === s.status)
                     .map((i, idx) => {
                       
-                      return <JobCard key={i.job_id} item={i} index={idx} moveItem={moveItem} status={s} />
+                      return <JobCard key={i.job_id} item={i} index={idx} moveItem={moveItem} status={s}  setStatus={setStatus} />
                     })}
                 </Columns>
               </DropWrapper>

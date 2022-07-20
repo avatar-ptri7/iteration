@@ -6,9 +6,6 @@ import axios from 'axios';
 const MoneyHolder = ({ id }) => {
   const [rating, setRating] = useState(null);
   const [hover, setHover] = useState(null);
-  // useEffect(() => {
-  //   console.log('new Rating----->', rating);
-  // }, [rating, id]);
 
   useEffect(() => {
     axios
@@ -17,7 +14,7 @@ const MoneyHolder = ({ id }) => {
         rating: `${rating}`,
       })
       .then((response) => {
-        console.log('response from DB ----->', response);
+        //need to handle the response sending to the JobCard to display
       })
       .catch((err) => console.log('Error in MoneyRating Component'));
   }, [rating]);
@@ -25,7 +22,7 @@ const MoneyHolder = ({ id }) => {
 
   return (
     
-    <div>
+    <div className='moneyHolder'>
       {[...Array(5)].map((item, i) => (
         <MoneyRating
           key={i}

@@ -47,7 +47,7 @@ const MoneyRating = ({
     //   color={moneyCount <= (hover || rating) ? '#85BB65' : '#D3D3D3'}
     //   onClick={setRating(moneyCount)}
     // />
-    <div>
+    <>
       {/* <form>
         <label>
           <input
@@ -58,6 +58,7 @@ const MoneyRating = ({
             onClick= {handleChange}
           /> */}
           <FaMoneyBill
+            value= { {size: 70}}
             name='rating'
             className='money'
             rating={rating}
@@ -71,7 +72,7 @@ const MoneyRating = ({
         {/* </label>
         </form> */}
 
-    </div>
+    </>
   );
 };
 

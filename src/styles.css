@@ -90,10 +90,10 @@ p {
   text-align: left;
 }
 
-.job-details label,
-.job-details input {
-  margin-bottom: 5px;
-  width: 80%;
+.job-details label, .job-details input {
+margin-bottom:5px;
+width: 80%;
+font-weight: bold;
 }
 
 .job-details label {
@@ -107,6 +107,7 @@ p {
   border-radius: 4px;
   outline: none;
   box-shadow: rgb(25 4 69 / 5%) 0px 2px 7px;
+  background-color:gainsboro;
 }
 
 label {
@@ -278,13 +279,13 @@ select {
 }
 
 .modal {
-  background-color: #f4f5f7;
-  border-radius: 2px;
-  margin: 48px 0 80px;
-  height: 600px;
-  width: 800px;
-  outline: none;
-  padding: 20px;
+    background: linear-gradient(90deg, rgba(0,73,191,1) 0%, rgba(190,190,255,1) 46%, rgba(0,212,255,1) 100%);
+    border-radius: 2px;
+    margin: 48px 0 80px;
+    height: 600px;
+    width: 800px;
+    outline: none;
+    padding: 20px;
 }
 
 .overlay {
@@ -327,16 +328,17 @@ select {
 }
 
 .job-description {
-  border: 1px, pink;
-  background-color: white;
-  height: 180px;
-  width: 675px;
-  overflow: auto;
-  float: left;
-  position: relative;
-  margin: 0;
-  border: 1px solid rgba(25, 4, 69, 0.1);
-  box-shadow: rgb(25 4 69 / 5%) 0px 2px 7px;
+    border: 1px, pink;
+    background-color: white;
+    height: 180px;
+    width: 100%;
+    overflow: auto;
+    float: left;
+    position: relative;
+    margin: 0;
+        border: 1px solid rgba(25,4,69,0.1);
+    box-shadow: rgb(25 4 69 / 5%) 0px 2px 7px;
+    background-color: gainsboro;
 }
 
 nav {

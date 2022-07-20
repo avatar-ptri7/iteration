@@ -147,13 +147,13 @@ userController.getJob = async (req, res, next) => {
   }
 };
 
+
 userController.updateStatus = async (req, res, next) => {
   try{
-    
-    const queryType = 'UPDATE users_jobs SET status=$1 WHERE job_id=$2 AND user_id=$3';
-    const { job_id, status } = req.body
-
+    const { job_id, status } = req.body;
     const params = [status, job_id, res.locals.user_id];
+    const queryType = 'UPDATE users_jobs SET status=$1 WHERE job_id=$2 AND user_id=$3';
+   
     res.locals.job = job_id;
 
     await db.query(queryType, params);
@@ -186,6 +186,20 @@ userController.updateRank = async (req, res, next) => {
     })
 
  
+}
+userController.applyStatus = async (req, res, next) => {
+  console.log('inside of apply middleware')
+  const { id, status} = req.body;
+  console.log('status recieved is', status)
+  let newStatus = (Number(status) + 1);
+  const applyQuery = `update users_jobs set status=${newStatus} where job_id = ${id} and user_id = ${res.locals.user_id}`;
+  await db.query(applyQuery)
+    db.query(`select status from users_jobs where job_id = ${id} and user_id = ${res.locals.user_id}`)
+    .then((data) => {
+      console.log('status returned to the front end is', data.rows[0].status)
+      res.locals.newDbStatus = data.rows[0].status;
+      return next();
+    })
 }
 
 module.exports = userController;
