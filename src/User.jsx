@@ -8,7 +8,7 @@ import axios from 'axios';
 function User(props) {
 
   const [jobs, setJobs] = useState([]);
-  //const [status, setStatus] = useState(null);
+
 
   const setStatus = (job_id, item, status) => {
     console.log("setStatus", job_id, item, status)
@@ -22,16 +22,14 @@ function User(props) {
           const newItems = prevState
             .filter(i => i.job_id !== job_id)
             .concat({ ...item, status })
-          console.log("newitems", newItems)
+          console.log("Job Updated", newItems)
           return [...newItems];
 
         })
       })
   };
 
-  useEffect(() => {
-    console.log('inside of user---->', jobs);
-  }, [jobs]);
+
 
 
   //Grabbing our data from the database
@@ -40,7 +38,6 @@ function User(props) {
       try {
         const response = await axios.get('/users/getalljobs');
         setJobs(response.data);
-        console.log("response.data", response.data)
       } catch (error) {
         console.error(error.message);
       }
@@ -62,7 +59,6 @@ function User(props) {
           const newItems = prevState
             .filter(i => i.job_id !== item.job_id)
             .concat({ ...item, status })
-          console.log("newitems", newItems)
           return [...newItems];
 
         })
