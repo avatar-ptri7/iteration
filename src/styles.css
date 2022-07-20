@@ -1,90 +1,93 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
 
 * {
-  font-family: "Lato", sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 :root {
-    --primary-color: rgb(62, 100, 255);
-    --complete-color: #27aa80;
-    --text-color: #172b4d;
-    --disabled-color: #fad6d6;
-    --background-color: #f5eaea;
+  --primary-color: rgb(62, 100, 255);
+  --complete-color: #27aa80;
+  --text-color: #172b4d;
+  --disabled-color: #fad6d6;
+  --background-color: #f5eaea;
 }
 #root {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 
-    height: 100vh;
-    width: 100vw;
-  }
-.button{
-    display: inline-block;
-    text-decoration: none;
-    font-size: 15px;
-    color: #1fe8b6;
-    padding: 20px 50px;
-    border: 3px solid #1fe8b6;
-    /* position: relative;
+  height: 100vh;
+  width: 100vw;
+}
+.button {
+  display: inline-block;
+  text-decoration: none;
+  font-size: 15px;
+  color: #1fe8b6;
+  padding: 20px 50px;
+  border: 3px solid #1fe8b6;
+  /* position: relative;
     position: absolute; */
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .button::before,
-.button::after{
-    content: '';
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    border: inherit;
-    transition: all .5s ease-in;
+.button::after {
+  content: '';
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border: inherit;
+  transition: all 0.5s ease-in;
 }
 
-.button::before{
-    top: -15px;
-    left: -15px;
-    border-width: 3px 0 0 3px;
+.button::before {
+  top: -15px;
+  left: -15px;
+  border-width: 3px 0 0 3px;
 }
 
-.button::after{
-    bottom: -15px;
-    right: -15px;
-    border-width: 0 3px 3px 0;
+.button::after {
+  bottom: -15px;
+  right: -15px;
+  border-width: 0 3px 3px 0;
 }
 
 .button:hover::before,
-.button:hover::after{
-    width: calc(100% + 27px);
-    height: calc(100% + 27px);
+.button:hover::after {
+  width: calc(100% + 27px);
+  height: calc(100% + 27px);
 }
 
 html {
-    
-    background: rgb(0,73,191);
-    background: linear-gradient(90deg, rgba(0,73,191,1) 0%, rgba(190,190,255,1) 46%, rgba(0,212,255,1) 100%);
+  background: rgb(0, 73, 191);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 73, 191, 1) 0%,
+    rgba(190, 190, 255, 1) 46%,
+    rgba(0, 212, 255, 1) 100%
+  );
 }
 
 body {
-    color: var(--text-color);
-    font-family:'Poppins', sans-serif;
-    margin: 0;
-    display: flex;
-   
+  color: var(--text-color);
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  display: flex;
 }
 
 a {
-    color: unset;
-    text-decoration: unset;
-    cursor: pointer;
+  color: unset;
+  text-decoration: unset;
+  cursor: pointer;
 }
 
 p {
-    margin: 10px 0;
-    overflow-wrap: break-word;
-    text-align: left;
+  margin: 10px 0;
+  overflow-wrap: break-word;
+  text-align: left;
 }
 
 .job-details label, .job-details input {
@@ -94,28 +97,27 @@ font-weight: bold;
 }
 
 .job-details label {
-    font-size: 14px;
-    display: block;
+  font-size: 14px;
+  display: block;
 }
 
 .job-details input {
   padding: 10px;
-  border: 1px solid rgba(25,4,69,0.1);
+  border: 1px solid rgba(25, 4, 69, 0.1);
   border-radius: 4px;
   outline: none;
   box-shadow: rgb(25 4 69 / 5%) 0px 2px 7px;
   background-color:gainsboro;
 }
 
-
 label {
-    font-size: 20px;
-    display: block;
+  font-size: 20px;
+  display: block;
 }
 .showcase {
-    width: 100%;
-    height: 50vh;
-    position: relative;
+  width: 100%;
+  height: 50vh;
+  position: relative;
 }
 
 /*
@@ -124,12 +126,12 @@ label {
 */
 
 .showcase img {
-    width: 100%;
-    height: 80%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    object-fit: cover;
+  width: 100%;
+  height: 80%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  object-fit: cover;
 }
 
 /*
@@ -139,18 +141,18 @@ label {
     set the text color to black and then the mix blend mode to screen.
 */
 .title {
-    width: 100%;
-    height: 100%;
-    font-size: 135px;
-    background-color: #000;
-    /*color: white;
+  width: 100%;
+  height: 100%;
+  font-size: 135px;
+  background-color: #000;
+  /*color: white;
     mix-blend-mode: multiply; */
-    text-shadow: rgba(235, 242, 244, 0.204) 5px 2px 7px;
-     background-image: url(https://source.unsplash.com/8lnbXtxFGZw);
-    background-clip: text;
-    background-size: cover;
-    -webkit-background-clip: text;
-    color: rgba(40, 109, 85, 0.426);
+  text-shadow: rgba(235, 242, 244, 0.204) 5px 2px 7px;
+  background-image: url(https://source.unsplash.com/8lnbXtxFGZw);
+  background-clip: text;
+  background-size: cover;
+  -webkit-background-clip: text;
+  color: rgba(40, 109, 85, 0.426);
 }
 /*
   button, input {
@@ -186,85 +188,94 @@ input:focus {
 */
 
 select {
-    outline: none;
-    height: 40px;
+  outline: none;
+  height: 40px;
 }
 
-
 .row {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
 }
 
 .item {
-    font-size: 15px;
-    margin-bottom: 10px;
-    padding: 10px;
-    border-radius: 5px;
-    z-index: 1;
-    background-color: white;
+  font-size: 15px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 1;
+  background-color: white;
 }
 
 .item:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .item-title {
-    font-weight: 600;
-    font-size: 16px;
+  font-weight: 600;
+  font-size: 16px;
 }
 
 .item-status {
-    text-align: right;
+  text-align: right;
 }
 
 .color-bar {
-    width: 40px;
-    height: 10px;
-    border-radius: 5px;
+  width: 40px;
+  height: 10px;
+  border-radius: 5px;
 }
 
 .drop-wrapper {
-    flex: 1 25%;
-    width: 100%;
-    height: 100%;
+  flex: 1 25%;
+  width: 100%;
+  height: 100%;
 }
 
 .col-wrapper {
-    display: flex;
-    flex-direction: column;
-    margin: 20px;
-    padding: 20px;
-    background-color: var(--background-color);
-    border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  padding: 20px;
+  background-color: var(--background-color);
+  border-radius: 5px;
 }
 
 .col-header {
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 20px;
-    margin-top: 0;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  margin-top: 0;
 }
 
 .col {
-    min-height: 1500px;
-    max-width: 2500px;
-    width: 250px;
+  min-height: 1500px;
+  max-width: 2500px;
+  width: 250px;
 }
 
-.highlight-region {
-    background-color: yellow;
+.col-highlight-region {
+  background-color: yellow;
+  min-height: 1500px;
+  max-width: 2500px;
+  width: 250px;
+  background: repeating-linear-gradient(
+    45deg,
+    var(--background-color),
+    var(--background-color) 10px,
+    lightgrey 10px,
+    lightgrey 11px
+  );
 }
 
 .page-header {
-    background-color: #054F7C;
-    padding: 20px;
-    color: white;
-    font-size: 30px;
-    flex: 1 100%;
-    margin-top: 0;
-    text-align: center;
+  background-color: #054f7c;
+  padding: 20px;
+  color: white;
+  font-size: 30px;
+  flex: 1 100%;
+  margin-top: 0;
+  text-align: center;
 }
 
 .modal {
@@ -278,42 +289,42 @@ select {
 }
 
 .overlay {
-    display: flex;
-    justify-content: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0,0,0,0.5);;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .close-btn-ctn {
-    display: flex;
+  display: flex;
 }
 
 .job-details .close-btn {
-    height: 32px;
-    width: 60px;
-    font-size: 16px;
-    color: #031D2C;
-    border: 1px solid rgba(25,4,69,0.1);
-    box-shadow: rgb(25 4 69 / 5%) 0px 2px 7px;
-    border-radius: 8px;
-    background-color: white;
-    }
+  height: 32px;
+  width: 60px;
+  font-size: 16px;
+  color: #031d2c;
+  border: 1px solid rgba(25, 4, 69, 0.1);
+  box-shadow: rgb(25 4 69 / 5%) 0px 2px 7px;
+  border-radius: 8px;
+  background-color: white;
+}
 
 .close-btn {
-    height: 40px;
-    width: 35px;
-    font-size: 20px;
-    color: #031D2C;
-    border: none;
-    border-radius: 25px;
+  height: 40px;
+  width: 35px;
+  font-size: 20px;
+  color: #031d2c;
+  border: none;
+  border-radius: 25px;
 }
 
 .close-btn:hover {
-    background-color: #DCDCDC;
+  background-color: #dcdcdc;
 }
 
 .job-description {
@@ -331,24 +342,24 @@ select {
 }
 
 nav {
-    display: flex;
-    justify-content: space-between;
-    background-color: #eeeeee;
-    padding: 10px;
-    padding-left: 25px;
-    padding-right: 25px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #eeeeee;
+  padding: 10px;
+  padding-left: 25px;
+  padding-right: 25px;
 }
 
 .nav-links {
-    width: 50vw;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    column-gap: 50px;
-    margin-left: 25px;
+  width: 50vw;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  column-gap: 50px;
+  margin-left: 25px;
 }
 
 .active {
-    color: #5271ff;
-    font-weight: bold;
+  color: #5271ff;
+  font-weight: bold;
 }
