@@ -8,11 +8,30 @@ import axios from 'axios';
 function User(props) {
 
   const [jobs, setJobs] = useState([]);
-  const [status, setStatus] = useState(null);
- 
+  //const [status, setStatus] = useState(null);
+
+  const setStatus = (job_id, item, status) => {
+    console.log("setStatus", job_id, item, status)
+    axios.post('/users/updatestatus', {
+      job_id: `${job_id}`,
+      status: `${status}`
+    }).then(response => console.log("axios post response", response))
+      .then(() => {
+
+        setJobs(prevState => {
+          const newItems = prevState
+            .filter(i => i.job_id !== job_id)
+            .concat({ ...item, status })
+          console.log("newitems", newItems)
+          return [...newItems];
+
+        })
+      })
+  };
+
   useEffect(() => {
-    console.log('inside of user---->', status);
-},[status]);
+    console.log('inside of user---->', jobs);
+  }, [jobs]);
 
 
   //Grabbing our data from the database
@@ -21,6 +40,7 @@ function User(props) {
       try {
         const response = await axios.get('/users/getalljobs');
         setJobs(response.data);
+        console.log("response.data", response.data)
       } catch (error) {
         console.error(error.message);
       }
@@ -29,20 +49,25 @@ function User(props) {
     fetchData();
   }, []);
 
+
   //onDrop function. Update job item with new status in database
   const onDrop = (item, monitor, status) => {
     axios.post('/users/updatestatus', {
       job_id: `${item.job_id}`,
       status: `${status}`
     }).then(response => console.log("axios post response", response))
-      .then(setJobs(prevState => {
-        const newItems = prevState
-          .filter(i => i.job_id !== item.job_id)
-          .concat({ ...item, status })
-        return [...newItems];
+      .then(() => {
+
+        setJobs(prevState => {
+          const newItems = prevState
+            .filter(i => i.job_id !== item.job_id)
+            .concat({ ...item, status })
+          console.log("newitems", newItems)
+          return [...newItems];
+
+        })
+
       })
-      
-      )
       .catch(function (error) {
         console.log(error)
       });
@@ -71,8 +96,8 @@ function User(props) {
                 <Columns>
                   {jobs.filter(i => i.status === s.status)
                     .map((i, idx) => {
-                      
-                      return <JobCard key={i.job_id} item={i} index={idx} moveItem={moveItem} status={s}  setStatus={setStatus} />
+
+                      return <JobCard key={i.job_id} item={i} index={idx} moveItem={moveItem} status={s} setStatus={setStatus} />
                     })}
                 </Columns>
               </DropWrapper>
