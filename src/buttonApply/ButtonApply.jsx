@@ -18,7 +18,7 @@ const ButtonApply = ({ url, id, item, status, setStatus }) => {
       })
       .catch((err) => console.log('Error in ButtonApply'));
 
-    //window.open(url, '_blank');
+    window.open(url, '_blank');
   };
 
   return (
