@@ -28,10 +28,11 @@ module.exports = {
         enforce: 'pre',
         use: ['source-map-loader'],
       },
+      
       {
-        test: /.(css|scss)$/,
+        test: /.(css|scss|less)$/,
         exclude: /node_modules/,
-        use: ['style-loader', 'css-loader'],
+        use: ['style-loader', 'css-loader', 'less-loader', "postcss-loader", "sass-loader"],
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,

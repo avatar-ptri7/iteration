@@ -3,6 +3,7 @@ import Modal from 'react-modal';
 import { useForm } from 'react-hook-form';
 import MoneyHolder from '../rating/MoneyHolderRater.jsx';
 import ButtonApply from '../buttonApply/ButtonApply.jsx';
+import Calendar from '../calendar/Calendar.jsx';
 
 Modal.setAppElement('#root');
 
@@ -121,7 +122,7 @@ const JobInfo = ({ show, onClose, item, status, setStatus }) => {
               
             </div>
           </form>
-
+          <Calendar />
           <label htmlFor='city'>Job Description: </label>
           <div className='job-description'>{item.description}</div>
           <ButtonApply url={item.job_apply_link} item={item} id={item.job_id} status={status} setStatus={setStatus} />
