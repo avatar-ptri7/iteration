@@ -58,7 +58,7 @@ const JobInfo = ({ show, onClose, item, status, setStatus}) => {
             <p>Job Description: {item.job_description}</p>
           </div>
           <form className='job-details-wrapper'>
-            <div style={styles.row}>
+            {/* <div style={styles.row}>
               <div style={{ marginRight: '10px' }}>
                 <label htmlFor='employer'>Company: </label>
                 <input
@@ -86,9 +86,9 @@ const JobInfo = ({ show, onClose, item, status, setStatus}) => {
                   defaultValue={item.job_expiration}
                 />
               </div>
-            </div>
+            </div> */}
 
-            <div style={styles.row}>
+            {/* <div style={styles.row}>
               <div>
                 <label htmlFor='application'>Application Link: </label>
                 <input
@@ -116,6 +116,9 @@ const JobInfo = ({ show, onClose, item, status, setStatus}) => {
                   defaultValue={item.city}
                 />
               </div>
+            </div> */}
+            <div>
+              
             </div>
           </form>
 
