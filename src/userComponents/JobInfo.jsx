@@ -6,7 +6,7 @@ import ButtonApply from '../buttonApply/ButtonApply.jsx';
 
 Modal.setAppElement('#root');
 
-const JobInfo = ({ show, onClose, item, status, setStatus}) => {
+const JobInfo = ({ show, onClose, item, status, setStatus }) => {
   const {
     register,
     handleSubmit,
@@ -124,7 +124,7 @@ const JobInfo = ({ show, onClose, item, status, setStatus}) => {
 
           <label htmlFor='city'>Job Description: </label>
           <div className='job-description'>{item.description}</div>
-          <ButtonApply url={item.job_apply_link} id={item.job_id} status={status} setStatus={setStatus}/>
+          <ButtonApply url={item.job_apply_link} item={item} id={item.job_id} status={status} setStatus={setStatus} />
         </div>
         <MoneyHolder id={item.job_id} />
       </div>
