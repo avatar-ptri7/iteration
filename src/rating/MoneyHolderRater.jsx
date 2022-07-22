@@ -23,6 +23,7 @@ const MoneyHolder = ({ id }) => {
   return (
     
     <div className='moneyHolder'>
+      Rate This Job
       {[...Array(5)].map((item, i) => (
         <MoneyRating
           key={i}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { IconContext } from 'react-icons';
 import { FaMoneyBill } from 'react-icons/fa';
 
 
@@ -57,6 +58,7 @@ const MoneyRating = ({
             value={moneyCount}
             onClick= {handleChange}
           /> */}
+          <IconContext.Provider value={{size: 70}}>
           <FaMoneyBill
             value= { {size: 70}}
             name='rating'
@@ -69,6 +71,7 @@ const MoneyRating = ({
               console.log('hello test');
               return setRating(moneyCount)}}
           />
+          </IconContext.Provider>
         {/* </label>
         </form> */}
 
