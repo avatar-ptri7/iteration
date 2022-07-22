@@ -2,10 +2,12 @@ import React, { Fragment, useState, useRef } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 import ITEM_TYPE from '../../data/types.js';
 import JobInfo from './JobInfo.jsx';
+import ButtonDelete from '../buttons/ButtonDelete.jsx';
 
 const JobCard = ({ item, index, moveItem, status, props, setStatus }) => {
   //ref allows us to imperatively modify a child
   const ref = useRef(null);
+  const refBtnDel = useRef(null);
 
   const [, drop] = useDrop({
     accept: ITEM_TYPE,
@@ -48,7 +50,14 @@ const JobCard = ({ item, index, moveItem, status, props, setStatus }) => {
 
   const [show, setShow] = useState(false);
 
-  const onOpen = () => setShow(true);
+  const onOpen = (e) => {
+    console.log('e inside of onOpen----->', e.currentTarget)
+    // if (window.confirm('Are you sure you want to delete')) {
+    //   axios.delete(`${id}.json`).then((response) => console.log(response));
+    // }
+    console.log("e inside onOpen", refBtnDel.current)
+    setShow(true);
+  }
 
   const onClose = () => setShow(false);
 
@@ -65,6 +74,7 @@ const JobCard = ({ item, index, moveItem, status, props, setStatus }) => {
           className={'color-bar'}
           style={{ backgroundColor: status.color }}
         />
+        <ButtonDelete ref={refBtnDel} id={item.job_id} setShow={setShow}/>
         <p className={'item-employer'}>{item.employer_name}</p>
         <p className={'item-title'}>{item.job_title}</p>
         <p className={'item-apply'}>{item.job_expiration}</p>

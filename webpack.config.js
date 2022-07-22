@@ -30,9 +30,9 @@ module.exports = {
       },
       
       {
-        test: /.(css|scss|less)$/,
-        exclude: /node_modules/,
-        use: ['style-loader', 'css-loader', 'less-loader', "postcss-loader", "sass-loader"],
+        test: /.(css|scss)$/,
+        
+        use: ['style-loader', 'css-loader',  "sass-loader"],
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,

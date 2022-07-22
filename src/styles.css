@@ -363,3 +363,11 @@ nav {
   color: #5271ff;
   font-weight: bold;
 }
+.del-btn {
+  display: block;
+  margin-left: auto;
+  margin-right: 0
+}
+.del-btn:hover {
+  cursor: pointer;
+}

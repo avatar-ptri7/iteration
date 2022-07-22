@@ -200,6 +200,18 @@ userController.applyStatus = async (req, res, next) => {
       res.locals.newDbStatus = data.rows[0].status;
       return next();
     })
-}
+};
+userController.addDate = (req, res, next) => {
+  console.log('inside addTime')
+  const {date, id} = req.body;
+  const timeQuery = `update user_jobs set interview_date = ${date} where job_id = ${id} and user_id = ${res.locals.user_id}`;
+  console.log(date, id)
+  db.query(timeQuery)
+    .then((data) => {
+      console.log(data)
+      res.locals.dbTime = data.rows[0].interview_date;
+      return next();
+    })  
+};
 
 module.exports = userController;
