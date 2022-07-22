@@ -47,6 +47,7 @@ userController.saveJob = async (req, res, next) => {
     job_required_education,
     job_min_salary,
     job_max_salary,
+    job_id,
   } = req.body;
 
   const user_id = res.locals.user_id;
@@ -73,12 +74,19 @@ userController.saveJob = async (req, res, next) => {
     job_required_education,
     job_min_salary,
     job_max_salary,
+    job_id,
     user_id,
   ];
 
   const queryType =
-    "WITH job AS (INSERT INTO jobs (employer_name, logo, website, job_publisher, employment_type, job_title, application_link, description, is_remote, job_posted_at, city, state, country, benefits, job_google_link, job_expiration, required_experience, required_skills, education, min_salary, max_salary ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21) RETURNING jobs.job_id )INSERT INTO users_jobs (user_id, job_id) SELECT $22, job_id FROM job RETURNING user_id";
+    `WITH job AS
+      (INSERT INTO jobs (job_id, employer_name, employer_logo, employer_website, job_publisher, job_employment_type, job_title, job_apply_link, job_description, job_is_remote, job_posted_at_datetime_utc, job_city, job_state, job_country, job_benefits, job_google_link, job_offer_expiration_timestamp, job_required_experience, job_required_skills, job_required_education, job_min_salary, job_max_salary )
+      VALUES ($22, $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21)
+      ON CONFLICT (job_id) DO UPDATE SET employer_name = $1
+      RETURNING jobs.job_id )
+    INSERT INTO users_jobs (user_id, job_id) SELECT $23, job_id FROM job RETURNING user_id`;
 
+    
   try {
     await db.query(queryType, params);
     return next();
