@@ -43,5 +43,9 @@ router.post('/addtime', authController.verifySession, userController.addDate, (r
   console.log('inside last middleware for addTime')
   return res.status(200)
 });
+router.post('/deletejob', authController.verifySession, userController.deleteJob, (req, res) => {
+  console.log('inside last middleware for deletejob')
+  return res.status(200)
+});
 
 module.exports = router;

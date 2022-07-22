@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 
-const ButtonApply = ({ url, id, item, status, setStatus }) => {
-  const [newStatus, setNewStatus] = useState(status);
+const ButtonApply = ({ url, id, item, setStatus }) => {
+  
   const handleSubmit = () =>{
     setStatus(id, item, 2)
     window.open(url, '_blank');

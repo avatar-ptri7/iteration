@@ -180,8 +180,8 @@ userController.updateRank = async (req, res, next) => {
   const {id, rating} = req.body
   console.log(id)
   console.log('rating---->', rating);
-  const rankQuery = `select * from users_jobs where user_id =${res.locals.user_id} and job_id = ${id}`
-  const updateRankQuery = `update users_jobs set rank = ${rating} where job_id = ${id} and user_id = ${res.locals.user_id}`
+  const rankQuery = `select * from users_jobs where user_id =${res.locals.user_id} and job_id = '${id}'`
+  const updateRankQuery = `update users_jobs set rank = ${rating} where job_id ='${id}' and user_id = ${res.locals.user_id}`
 
   //searching updating the rank of the particular job for the logged in user.
   await db.query(updateRankQuery)
@@ -200,9 +200,9 @@ userController.applyStatus = async (req, res, next) => {
   const { id, status} = req.body;
   console.log('status recieved is', status)
   let newStatus = (Number(status) + 1);
-  const applyQuery = `update users_jobs set status=${newStatus} where job_id = ${id} and user_id = ${res.locals.user_id}`;
+  const applyQuery = `update users_jobs set status=${newStatus} where job_id = '${id}' and user_id = ${res.locals.user_id}`;
   await db.query(applyQuery)
-    db.query(`select status from users_jobs where job_id = ${id} and user_id = ${res.locals.user_id}`)
+    db.query(`select status from users_jobs where job_id = '${id}' and user_id = ${res.locals.user_id}`)
     .then((data) => {
       console.log('status returned to the front end is', data.rows[0].status)
       res.locals.newDbStatus = data.rows[0].status;
@@ -212,7 +212,7 @@ userController.applyStatus = async (req, res, next) => {
 userController.addDate = (req, res, next) => {
   console.log('inside addTime')
   const {date, id} = req.body;
-  const timeQuery = `update user_jobs set interview_date = ${date} where job_id = ${id} and user_id = ${res.locals.user_id}`;
+  const timeQuery = `update users_jobs set interview_date = '${date}' where job_id = '${id}' and user_id = ${res.locals.user_id} returning *`;
   console.log(date, id)
   db.query(timeQuery)
     .then((data) => {
@@ -221,5 +221,14 @@ userController.addDate = (req, res, next) => {
       return next();
     })  
 };
+userController.deleteJob = (req, res, next) => {
+  console.log('inside deleteJob')
+  const {id} = req.body;
+  const deleteQuery = `delete from users_jobs where user_id = '${res.locals.user_id}' and job_id = '${id}' returning *`;
+    db.query(deleteQuery)
+      .then((data) => {console.log(`deleted job ${id} successfully`)
+      return next();
+    })
+}
 
 module.exports = userController;

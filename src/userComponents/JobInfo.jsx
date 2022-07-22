@@ -122,7 +122,7 @@ const JobInfo = ({ show, onClose, item, status, setStatus }) => {
               
             </div>
           </form>
-          <Calendar id={item.job_id}/>
+         <Calendar id={item.job_id}/> 
           <label htmlFor='city'>Job Description: </label>
           <div className='job-description'>{item.description}</div>
           <ButtonApply url={item.job_apply_link} item={item} id={item.job_id} status={status} setStatus={setStatus} />
