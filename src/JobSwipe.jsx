@@ -140,6 +140,7 @@ function JobSwipe() {
         job_required_education: removedJob[0].job_required_education,
         job_min_salary: removedJob[0].job_min_salary,
         job_max_salary: removedJob[0].job_max_salary,
+        job_id: removedJob[0].job_id
       })
         .then(response => console.log('Successful swipe right! Response...', response))
         .catch(err => console.log('Error in JobSwipe swipe right action...', err));
