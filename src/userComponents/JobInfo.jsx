@@ -61,7 +61,7 @@ const JobInfo = ({ show, onClose, item, status, setStatus, jobInfo }) => {
             </button>
           </div>
         </div>
-        <MoneyHolder id={item.job_id} item={item} />
+        <MoneyHolder id={item.job_id} item={item} rank={item.rank}/>
         <div className="job-details-content">
           <p>Application Closes: {appCloseDate}</p>
           <p>
