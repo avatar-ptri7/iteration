@@ -294,6 +294,8 @@ select {
   z-index: 100;
   position: fixed;
   font-weight: bold;
+  height: 90vh;
+  overflow: auto;
   top: 2vh;
   left: 10%;
   width: 80%;
@@ -309,6 +311,7 @@ select {
   justify-content: center;
   position: fixed;
   overflow: auto;
+
   top: 0;
   left: 0;
   right: 0;
