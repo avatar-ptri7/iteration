@@ -15,7 +15,6 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-
   height: 100vh;
   width: 100vw;
 }
@@ -24,7 +23,7 @@
   text-decoration: none;
   font-size: 15px;
   color: #1fe8b6;
-  padding: 20px 50px;
+  padding: 20git px 50px;
   border: 3px solid #1fe8b6;
   /* position: relative;
     position: absolute; */
@@ -90,10 +89,11 @@ p {
   text-align: left;
 }
 
-.job-details label, .job-details input {
-margin-bottom:5px;
-width: 80%;
-font-weight: bold;
+.job-details label,
+.job-details input {
+  margin-bottom: 5px;
+  width: 80%;
+  font-weight: bold;
 }
 
 .job-details label {
@@ -107,7 +107,7 @@ font-weight: bold;
   border-radius: 4px;
   outline: none;
   box-shadow: rgb(25 4 69 / 5%) 0px 2px 7px;
-  background-color:gainsboro;
+  background-color: gainsboro;
 }
 
 label {
@@ -279,28 +279,67 @@ select {
 }
 
 .modal {
-    background: linear-gradient(90deg, rgba(0,73,191,1) 0%, rgba(190,190,255,1) 46%, rgba(0,212,255,1) 100%);
-    border-radius: 2px;
-    margin: 48px 0 80px;
-    height: 600px;
-    width: 800px;
-    outline: none;
-    padding: 20px;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 73, 191, 1) 0%,
+    rgba(190, 190, 255, 1) 46%,
+    rgba(0, 212, 255, 1) 100%
+  );
+  /* border-radius: 2px;*/
+  /* margin: 48px 0 80px;  */
+  /* height: 600px; */
+  /* width: 800px; */
+  /* outline: none; */
+  padding: 20px;
+  z-index: 100;
+  position: fixed;
+  font-weight: bold;
+  top: 2vh;
+  left: 10%;
+  width: 80%;
+   overflow: auto;
+  /* background: white; */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  border-radius: 8px;
+  border: 5px solid white;
 }
 
 .overlay {
   display: flex;
   justify-content: center;
   position: fixed;
+  overflow: auto;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
+  /* overflow-y: initial !important; */
 }
 
 .close-btn-ctn {
   display: flex;
+}
+
+/* .job-info_container {
+  height: 20rem;
+  width: 100%;
+} */
+
+.job-details-job_header {
+  border: 5px white solid;
+  border-radius: 8px;
+  padding: 1rem 0.5rem;
+}
+
+.job-details-job_header {
+  font-size: 24px;
+}
+
+.job-details-content {
+  /* padding: 1rem 0.5rem; */
+ overflow-y: auto;
+ height: 500px;
 }
 
 .job-details .close-btn {
@@ -328,17 +367,17 @@ select {
 }
 
 .job-description {
-    border: 1px, pink;
-    background-color: white;
-    height: 180px;
-    width: 100%;
-    overflow: auto;
-    float: left;
-    position: relative;
-    margin: 0;
-        border: 1px solid rgba(25,4,69,0.1);
-    box-shadow: rgb(25 4 69 / 5%) 0px 2px 7px;
-    background-color: gainsboro;
+  border: 1px, pink;
+  background-color: white;
+  height: 180px;
+  width: 100%;
+  overflow: auto;
+  float: left;
+  position: relative;
+  margin: 0;
+  border: 1px solid rgba(25, 4, 69, 0.1);
+  box-shadow: rgb(25 4 69 / 5%) 0px 2px 7px;
+  background-color: gainsboro;
 }
 
 nav {
@@ -366,7 +405,7 @@ nav {
 .del-btn {
   display: block;
   margin-left: auto;
-  margin-right: 0
+  margin-right: 0;
 }
 .del-btn:hover {
   cursor: pointer;

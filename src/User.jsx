@@ -93,7 +93,7 @@ function User(props) {
                   {jobs.filter(i => i.status === s.status)
                     .map((i, idx) => {
 
-                      return <JobCard key={i.job_id} item={i} index={idx} moveItem={moveItem} status={s} setStatus={setStatus} />
+                      return <JobCard key={idx} item={i} index={idx} moveItem={moveItem} status={s} setStatus={setStatus} />
                     })}
                 </Columns>
               </DropWrapper>
