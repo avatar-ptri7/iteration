@@ -17,6 +17,10 @@ router.get(
     return res.status(200).json(res.locals.values);
   }
 );
+router.get('/rank',authController.verifySession, userController.getRank, (req, res) => {
+  console.log("getting rank!");
+  return res.status(200).json(res.locals.data)
+})
 
 // this will save a job when a user swipes right
 router.post(
