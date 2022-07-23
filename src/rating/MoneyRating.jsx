@@ -58,7 +58,7 @@ const MoneyRating = ({
             value={moneyCount}
             onClick= {handleChange}
           /> */}
-          <IconContext.Provider value={{size: 70}}>
+          <IconContext.Provider value={{size: 50}}>
           <FaMoneyBill
             value= { {size: 70}}
             name='rating'

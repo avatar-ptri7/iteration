@@ -48,6 +48,7 @@ const JobInfo = ({ show, onClose, item, status, setStatus }) => {
           </button>
         </div>
         <div>
+        <MoneyHolder id={item.job_id} item={item}/>
           <div className='job-details-job'>
             <p>Application Closes: {appCloseDate}</p>
             <p>
@@ -123,11 +124,11 @@ const JobInfo = ({ show, onClose, item, status, setStatus }) => {
             </div>
           </form>
          <Calendar id={item.job_id}/> 
-          <label htmlFor='city'>Job Description: </label>
+          <label htmlFor='notes'>Notes: </label>
           <div className='job-description'>{item.description}</div>
           <ButtonApply url={item.job_apply_link} item={item} id={item.job_id} status={status} setStatus={setStatus} />
         </div>
-        <MoneyHolder id={item.job_id} item={item}/>
+
       </div>
     </Modal>
   );

@@ -279,13 +279,14 @@ select {
 }
 
 .modal {
-    background: linear-gradient(90deg, rgba(0,73,191,1) 0%, rgba(190,190,255,1) 46%, rgba(0,212,255,1) 100%);
-    border-radius: 2px;
-    margin: 48px 0 80px;
-    height: 600px;
-    width: 800px;
-    outline: none;
-    padding: 20px;
+  background: linear-gradient(90deg, rgba(0,73,191,1) 0%, rgba(190,190,255,1) 46%, rgba(0,212,255,1) 100%);
+  border-radius: 2px;
+  margin: 48px 0 80px;
+  height:90vh;
+  overflow:auto;
+  width: 800px;
+  outline: none;
+  padding: 20px;
 }
 
 .overlay {
@@ -370,4 +371,8 @@ nav {
 }
 .del-btn:hover {
   cursor: pointer;
+}
+
+.money {
+  padding: 5px;
 }
