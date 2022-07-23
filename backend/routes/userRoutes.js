@@ -50,6 +50,10 @@ router.post('/deletejob', authController.verifySession, userController.deleteJob
 router.post('/getJobInfo', authController.verifySession, userController.getJobInfo, (req, res) => {
   console.log('inside of getJobInfor middleware ');
   return res.status(200).json(res.locals.getJobInfo);
-})
+});
+router.post('/addNote', authController.verifySession, userController.addNote, (req, res) => {
+  console.log('inside last middleware for addTime')
+  return res.status(200).json(res.locals.notes)
+});
 
 module.exports = router;

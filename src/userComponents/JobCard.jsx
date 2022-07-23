@@ -3,6 +3,7 @@ import { useDrag, useDrop } from 'react-dnd';
 import ITEM_TYPE from '../../data/types.js';
 import JobInfo from './JobInfo.jsx';
 import ButtonDelete from '../buttonApply/ButtonDelete.jsx';
+import axios from 'axios';
 
 const JobCard = ({ item, index, moveItem, status, props, setStatus ,delJobs, jobInfo }) => {
   //ref allows us to imperatively modify a child
@@ -56,7 +57,14 @@ const JobCard = ({ item, index, moveItem, status, props, setStatus ,delJobs, job
     setShow(true);
   }
 
-  const onClose = () => setShow(false);
+  const onClose = (id, notes) => {
+    setShow(false);
+    console.log('notes will be saved')
+    axios.post('/users/addNote', {
+      job_id: `${id}`,
+      notes: `${notes}`
+    }).then(response => console.log('axios post response', response))
+  };
 
   drag(drop(ref));
   return (

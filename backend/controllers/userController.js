@@ -239,5 +239,17 @@ userController.getJobInfo = (req, res, next) => {
    .then((data) => { res.locals.getJobInfo = data })
    return next();
 }
+userController.addNote = (req, res, next) => {
+  console.log('inside addNotes')
+  const { notes, id } = req.body;
+  const notesQuery = `update users_jobs set notes = ‘${notes}’ where job_id = ‘${id}’ and user_id = '${res.locals.user_id}' returning *`;
+  console.log(notes, id)
+  db.query(notesQuery)
+    .then((data) => {
+      console.log(data)
+      res.locals.notes = data.rows[0].notes;
+      return next();
+    })
+};
 
 module.exports = userController;
