@@ -23,18 +23,27 @@ const MoneyHolder = ({ id }) => {
   return (
     
     <div className='moneyHolder'>
-      Rate This Job
-      {[...Array(5)].map((item, i) => (
-        <MoneyRating
-          key={i}
-          moneyCount={i + 1}
-          rating={rating}
-          setRating={setRating}
-          hover={hover}
-          setHover={setHover}
-          id={id}
-        />
-      ))}
+      <table>
+        <tbody>
+          <tr>
+            <td>Rate This Job</td>
+            <td>{[...Array(5)].map((item, i) => (
+                <MoneyRating
+                  key={i}
+                  moneyCount={i + 1}
+                  rating={rating}
+                  setRating={setRating}
+                  hover={hover}
+                  setHover={setHover}
+                  id={id}
+                />
+              ))}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      
+
     </div>
   );
 };

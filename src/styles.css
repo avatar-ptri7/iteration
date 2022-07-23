@@ -255,7 +255,6 @@ select {
 }
 
 .col-highlight-region {
-  background-color: yellow;
   min-height: 1500px;
   max-width: 2500px;
   width: 250px;
@@ -299,7 +298,7 @@ select {
   top: 2vh;
   left: 10%;
   width: 80%;
-   overflow: auto;
+  overflow: auto;
   /* background: white; */
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   border-radius: 8px;
@@ -412,4 +411,8 @@ nav {
 }
 .del-btn:hover {
   cursor: pointer;
+}
+
+.money {
+  padding: 5px;
 }

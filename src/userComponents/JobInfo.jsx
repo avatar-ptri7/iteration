@@ -51,7 +51,7 @@ const JobInfo = ({ show, onClose, item, status, setStatus }) => {
             </button>
           </div>
         </div>
-
+        <MoneyHolder id={item.job_id} item={item} />
         <div className="job-details-content">
           <p>Application Closes: {appCloseDate}</p>
           <p>
@@ -74,8 +74,6 @@ const JobInfo = ({ show, onClose, item, status, setStatus }) => {
             setStatus={setStatus}
           />
         </form>
-
-        <MoneyHolder id={item.job_id} item={item} />
       </div>
     </Modal>
   );

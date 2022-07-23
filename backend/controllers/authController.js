@@ -135,40 +135,42 @@ authController.verifySession = async (req, res, next) => {
     status: 401,
     message: 'No token'
   });
-  try {
-    const result = await jwt.verify(token, process.env.JWT_SECRET);
-    console.log('Verified Token Info --> ', result);
-    user_id = result.user_id;
-  } catch (error) {
-    res.cookie('SID', 'invalid', {maxAge: 1});
-    next({
-      log: 'Error in authController.verifySession: token not valid',
-      status: 403,
-      message: 'Token invalid'
-    })
-  }
-  const query = 'SELECT token FROM users WHERE user_id=$1';
-  const params = [user_id];
-  try {
-    const data = await db.query(query, params);
-    if (data.rows[0].token === token) {
-      res.locals.user_id = user_id;
-      next();
-    } else {
+  else {
+    try {
+      const result = await jwt.verify(token, process.env.JWT_SECRET);
+      console.log('Verified Token Info --> ', result);
+      user_id = result.user_id;
+    } catch (error) {
       res.cookie('SID', 'invalid', {maxAge: 1});
       next({
-        log: 'Error in authController.verifySession: token does not match token in database',
+        log: 'Error in authController.verifySession: token not valid',
         status: 403,
-        message: 'Session mismatch'
-      });
+        message: 'Token invalid'
+      })
     }
-  } catch (error) {
-    res.cookie('SID', 'invalid', {maxAge: 1});
-    next({
-      log: 'Error in authController.verifySession: token not in database',
-      status: 403,
-      message: 'Invalid session'
-    })
+    const query = 'SELECT token FROM users WHERE user_id=$1';
+    const params = [user_id];
+    try {
+      const data = await db.query(query, params);
+      if (data.rows[0].token === token) {
+        res.locals.user_id = user_id;
+        next();
+      } else {
+        res.cookie('SID', 'invalid', {maxAge: 1});
+        next({
+          log: 'Error in authController.verifySession: token does not match token in database',
+          status: 403,
+          message: 'Session mismatch'
+        });
+      }
+    } catch (error) {
+      res.cookie('SID', 'invalid', {maxAge: 1});
+      next({
+        log: 'Error in authController.verifySession: token not in database',
+        status: 403,
+        message: 'Invalid session'
+      })
+    }
   }
 
 };
