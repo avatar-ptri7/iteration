@@ -3,22 +3,49 @@ import React, { useState, useEffect } from 'react';
 import MoneyRating  from './MoneyRating.jsx'
 import axios from 'axios';
 
-const MoneyHolder = ({ id }) => {
+const MoneyHolder = ({ id, rank }) => {
   const [rating, setRating] = useState(null);
   const [hover, setHover] = useState(null);
+  
+    useEffect(() => {
+      axios
+        .get('/users/rank', {
+          params: {
+            id: `${id}`
+          }
+        })
+        .then((data => {
+          setRating(data.data.rows[0].rank)
+          console.log('THIS IS WHAT I SET RATING AS --> ',data.data.rows[0].rank)
+        }))
+        .catch((err) => console.log('Error in MoneyRating Component get request'));
+    }, []);
+  
+  const handleMoneyClick = async (moneyCount) => {
+    await setRating(moneyCount)
 
-  useEffect(() => {
     axios
       .post('/users/rank', {
         id: `${id}`,
-        rating: `${rating}`,
+        rating: `${moneyCount}`,
       })
       .then((response) => {
         //need to handle the response sending to the JobCard to display
       })
-      .catch((err) => console.log('Error in MoneyRating Component'));
-  }, [rating]);
+      .catch((err) => console.log('Error in MoneyRating Component post request'));
 
+}
+  // useEffect(() => {
+  //   axios
+  //     .post('/users/rank', {
+  //       id: `${id}`,
+  //       rating: `${rating}`,
+  //     })
+  //     .then((response) => {
+  //       //need to handle the response sending to the JobCard to display
+  //     })
+  //     .catch((err) => console.log('Error in MoneyRating Component post request'));
+  // }, [rating]);
 
   return (
     
@@ -36,6 +63,8 @@ const MoneyHolder = ({ id }) => {
                   hover={hover}
                   setHover={setHover}
                   id={id}
+                  rank={rank}
+                  handleMoneyClick = {handleMoneyClick}
                 />
               ))}
             </td>
