@@ -2,18 +2,21 @@ import React, { useState } from 'react';
 import Modal from 'react-modal';
 import { useForm } from 'react-hook-form';
 import MoneyHolder from '../rating/MoneyHolderRater.jsx';
-import ButtonApply from '../buttons/ButtonApply.jsx';
+import ButtonApply from '../buttonApply/ButtonApply.jsx';
 import Calendar from '../calendar/Calendar.jsx';
 
 Modal.setAppElement('#root');
 
-const JobInfo = ({ show, onClose, item, status, setStatus }) => {
+const JobInfo = ({ show, onClose, item, status, setStatus, jobInfo }) => {
   const {
     register,
     handleSubmit,
     formState: { errors }
   } = useForm();
-
+  const [formData, setFormData] = useState({
+    notes: 'Please enter notes about this job here.',
+    body:''
+  })
   const appCloseDate = new Date(
     item.job_offer_expiration_timestamp
   ).toDateString();
@@ -46,7 +49,14 @@ const JobInfo = ({ show, onClose, item, status, setStatus }) => {
                 {item.employer_name}
               </p>
             </div>
-            <button className="close-btn" onClick={onClose}>
+         
+         <Calendar id={item.job_id} jobInfo={jobInfo}/> 
+         <label htmlFor='notes'>Your notes: </label>
+
+          <textarea value={formData.notes} onChange={(e) => setFormData({ ...formData, notes: e.target.value })}   name='notes' id='notes'></textarea>
+          <ButtonApply url={item.job_apply_link} item={item} id={item.job_id} status={status} setStatus={setStatus} />
+          <button className='close-btn' onClick={
+              () => { onClose(item.job_id, jobInfo.notes) }}>
               Close
             </button>
           </div>

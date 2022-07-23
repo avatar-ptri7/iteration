@@ -2,12 +2,13 @@ import React, { Fragment, useState, useRef } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 import ITEM_TYPE from '../../data/types.js';
 import JobInfo from './JobInfo.jsx';
-import ButtonDelete from '../buttons/ButtonDelete.jsx';
+import ButtonDelete from '../buttonApply/ButtonDelete.jsx';
+import axios from 'axios';
 
-const JobCard = ({ item, index, moveItem, status, props, setStatus }) => {
+const JobCard = ({ item, index, moveItem, status, props, setStatus ,delJobs, jobInfo }) => {
   //ref allows us to imperatively modify a child
   const ref = useRef(null);
-  const refBtnDel = useRef(null);
+ 
 
   const [, drop] = useDrop({
     accept: ITEM_TYPE,
@@ -51,15 +52,19 @@ const JobCard = ({ item, index, moveItem, status, props, setStatus }) => {
   const [show, setShow] = useState(false);
 
   const onOpen = (e) => {
-    console.log('e inside of onOpen----->', e.currentTarget)
-    // if (window.confirm('Are you sure you want to delete')) {
-    //   axios.delete(`${id}.json`).then((response) => console.log(response));
-    // }
-    console.log("e inside onOpen", refBtnDel.current)
+  
+   
     setShow(true);
   }
 
-  const onClose = () => setShow(false);
+  const onClose = (id, notes) => {
+    setShow(false);
+    console.log('notes will be saved')
+    axios.post('/users/addNote', {
+      job_id: `${id}`,
+      notes: `${notes}`
+    }).then(response => console.log('axios post response', response))
+  };
 
   drag(drop(ref));
   return (
@@ -74,7 +79,7 @@ const JobCard = ({ item, index, moveItem, status, props, setStatus }) => {
           className={'color-bar'}
           style={{ backgroundColor: status.color }}
         />
-        <ButtonDelete ref={refBtnDel} id={item.job_id} setShow={setShow}/>
+        <ButtonDelete id={item.job_id} setShow={setShow} delJobs={delJobs} item={item} status={status}/>
         <p className={'item-employer'}>{item.employer_name}</p>
         <p className={'item-title'}>{item.job_title}</p>
         <p className={'item-apply'}>{item.job_expiration}</p>
@@ -85,6 +90,7 @@ const JobCard = ({ item, index, moveItem, status, props, setStatus }) => {
         show={show}
         status={status}
         setStatus={setStatus}
+        jobInfo={jobInfo}
       />
     </Fragment>
   );

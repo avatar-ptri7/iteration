@@ -110,7 +110,7 @@ userController.getAllJobs = async (req, res, next) => {
 
     const queryType =
 
-      "SELECT uj.user_id, uj.status, j.* FROM users_jobs uj RIGHT OUTER JOIN jobs j ON uj.job_id=j.job_id WHERE uj.user_id=$1";
+      "SELECT uj.user_id, uj.status, uj.rank, uj.interview_date, j.* FROM users_jobs uj RIGHT OUTER JOIN jobs j ON uj.job_id=j.job_id WHERE uj.user_id=$1";
     // returns an array full of objects that are the jobs
     const params = [user_id];
 
@@ -221,12 +221,13 @@ userController.applyStatus = async (req, res, next) => {
 userController.addDate = (req, res, next) => {
   console.log('inside addTime')
   const {date, id} = req.body;
-  const timeQuery = `update users_jobs set interview_date = '${date}' where job_id = '${id}' and user_id = ${res.locals.user_id} returning *`;
+  const timeQuery = `update users_jobs set interview_date = '${date}' where job_id = '${id}' and user_id ='${res.locals.user_id}' returning *`;
   console.log(date, id)
   db.query(timeQuery)
     .then((data) => {
       console.log(data)
       res.locals.dbTime = data.rows[0].interview_date;
+      console.log('res.locals.dbTime----->', res.locals.dbTime)
       return next();
     })  
 };
@@ -238,6 +239,26 @@ userController.deleteJob = (req, res, next) => {
       .then((data) => {console.log(`deleted job ${id} successfully`)
       return next();
     })
+};
+userController.getJobInfo = (req, res, next) => {
+  console.log('inside of getJobInfo');
+  const { id } = req.body;
+  const getJobInfoQuery = `select * from users_jobs where user_id = '${res.locals.user_id}' and job_id = '${id}' returning * `;
+   db.query(getJobInfoQuery)
+   .then((data) => { res.locals.getJobInfo = data })
+   return next();
 }
+userController.addNote = (req, res, next) => {
+  console.log('inside addNotes')
+  const { notes, id } = req.body;
+  const notesQuery = `update users_jobs set notes = ‘${notes}’ where job_id = ‘${id}’ and user_id = '${res.locals.user_id}' returning *`;
+  console.log(notes, id)
+  db.query(notesQuery)
+    .then((data) => {
+      console.log(data)
+      res.locals.notes = data.rows[0].notes;
+      return next();
+    })
+};
 
 module.exports = userController;

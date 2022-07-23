@@ -45,11 +45,19 @@ router.post('/apply', authController.verifySession, userController.applyStatus, 
 });
 router.post('/addtime', authController.verifySession, userController.addDate, (req, res) => {
   console.log('inside last middleware for addTime')
-  return res.status(200)
+  return res.status(200).json(res.locals.dbTime);
 });
 router.post('/deletejob', authController.verifySession, userController.deleteJob, (req, res) => {
   console.log('inside last middleware for deletejob')
   return res.status(200)
+});
+router.post('/getJobInfo', authController.verifySession, userController.getJobInfo, (req, res) => {
+  console.log('inside of getJobInfor middleware ');
+  return res.status(200).json(res.locals.getJobInfo);
+});
+router.post('/addNote', authController.verifySession, userController.addNote, (req, res) => {
+  console.log('inside last middleware for addTime')
+  return res.status(200).json(res.locals.notes)
 });
 
 module.exports = router;

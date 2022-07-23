@@ -416,3 +416,8 @@ nav {
 .money {
   padding: 5px;
 }
+ #notes {
+  width: 90%;
+  height: 100px;
+  margin-bottom: 20px;
+}
